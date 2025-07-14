@@ -155,6 +155,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model2.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpringScene.cpp" />
   </ItemGroup>
@@ -256,6 +257,7 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Model2.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SpringScene.h" />
   </ItemGroup>

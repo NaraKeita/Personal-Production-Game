@@ -25,5 +25,6 @@ private:
 	Model* model_ = nullptr;
 	WorldTransform worldTransform_;
 	Camera viewProjection_;
+	Camera camera_;
 
 };

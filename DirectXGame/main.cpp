@@ -12,8 +12,8 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 	DirectXCommon* dxCommon = DirectXCommon::GetInstance();
 
-	std::unique_ptr<SpringScene> gameScene = std::make_unique<SpringScene>();
-	gameScene->Initialize();
+	std::unique_ptr<SpringScene> springScene = std::make_unique<SpringScene>();
+	springScene->Initialize();
 
 	ImGuiManager* imGuiManager = ImGuiManager::GetInstance();
 
@@ -25,13 +25,13 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		// ImGui受付開始
 		imGuiManager->Begin();
 
-		gameScene->Update();
+		springScene->Update();
 
 		imGuiManager->End();
 
 		dxCommon->PreDraw();
 
-		gameScene->Draw();
+		springScene->Draw();
 
 		imGuiManager->Draw();
 

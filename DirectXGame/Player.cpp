@@ -5,13 +5,10 @@ void Player::Initialize(Model* model, const Vector3& position) {
 	input_ = Input::GetInstance();
 	// NULLポインタをチェックする
 	assert(model);
-	
+
 	// 引数として受け取ったデータをメンバ変数に記録する
 	model_ = model;
 	worldTransform_.translation_ = position;
-
-	objectColor = new ObjectColor;
-	objectColor->Initialize();
 	
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
@@ -19,7 +16,7 @@ void Player::Initialize(Model* model, const Vector3& position) {
 }
 
 void Player::Update() {
-	//worldTransform_.UpdateMatrix();
+	worldTransform_.UpdateMatrix();
 	worldTransform_.TransferMatrix();
 
 	// キャラクターの移動速さ
@@ -35,5 +32,5 @@ void Player::Update() {
 }
 
 void Player::Draw(Camera& camera) {    
-    model_->Draw(worldTransform_, camera, objectColor);  
+    model_->Draw(worldTransform_, camera);  
 }

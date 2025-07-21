@@ -16,7 +16,8 @@ void SpringScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
-	
+	camera_.Initialize();
+
 	// モデル
 	model_ = Model::CreateFromOBJ("player");
 
@@ -36,13 +37,14 @@ void SpringScene::Initialize() {
 
 }
 
-void SpringScene::Update() {
-
+void SpringScene::Update() { 
+	player_->Update(); 
 }
 
 void SpringScene::Draw() {  
     // DirectXCommonのインスタンスを取得  
-   // DirectXCommon* dxCommon = DirectXCommon::GetInstance();  
+    DirectXCommon* dxCommon = DirectXCommon::GetInstance();  
+	dxCommon->ClearDepthBuffer();
 
     // 3Dモデル描画前処理
 	Model::PreDraw();

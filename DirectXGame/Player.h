@@ -12,7 +12,6 @@ public:
 
 public:
 	Input* input_ = nullptr;
-	ObjectColor* objectColor;
 
 private:
 	// ワールド変換データ
@@ -20,6 +19,6 @@ private:
 	// モデル
 	Model* model_ = nullptr;
 	
-	Vector3* position_ = nullptr;
+	//Vector3* position_ = nullptr;
 
 };

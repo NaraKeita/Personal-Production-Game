@@ -18,7 +18,6 @@ private:
 	WorldTransform worldTransform_;
 	// モデル
 	Model* model_ = nullptr;
-	
-	//Vector3* position_ = nullptr;
-
+	// X方向の速度
+	float velocityX_;
 };

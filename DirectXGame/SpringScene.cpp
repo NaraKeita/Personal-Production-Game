@@ -7,8 +7,10 @@ using namespace KamataEngine;
 
 SpringScene::~SpringScene() {
 	// 自キャラの開放
-	delete model_;
 	delete player_;
+
+	delete modelPlayer_;
+	delete modelSkydome_;
 }
 
 void SpringScene::Initialize() {
@@ -19,7 +21,8 @@ void SpringScene::Initialize() {
 	camera_.Initialize();
 
 	// モデル
-	model_ = Model::CreateFromOBJ("player");
+	modelPlayer_ = Model::CreateFromOBJ("player"); // プレイヤー
+	modelSkydome_ = Model::CreateFromOBJ("skydome"); // スカイドーム
 
 	// ワールドトランスフォーム
 	worldTransform_.Initialize();
@@ -29,7 +32,12 @@ void SpringScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	player_->Initialize(model_, worldTransform_.translation_);
+	player_->Initialize(modelPlayer_, worldTransform_.translation_);
+
+	// スカイドームの生成
+	skydome_ = new Skydome();
+	// スカイドームの初期化
+	skydome_->Initialize(modelSkydome_,worldTransform_.translation_);
 
 	// 軸方向
 	AxisIndicator::GetInstance()->SetVisible(true);
@@ -49,8 +57,8 @@ void SpringScene::Draw() {
     // 3Dモデル描画前処理
 	Model::PreDraw();
 
-    // 自キャラの描画  
     player_->Draw(camera_);  
+	skydome_->Draw(camera_);
 
     // 3Dモデル描画後処理  
     Model::PostDraw();  

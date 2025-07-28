@@ -1,6 +1,7 @@
 #pragma once
 #include "KamataEngine.h"
 #include "Player.h"
+#include "Skydome.h"
 
 using namespace KamataEngine;
 
@@ -20,9 +21,13 @@ private:
 	Audio* audio_ = nullptr;
 	// 自キャラ
 	Player* player_ = nullptr;
+	// スカイドーム
+	Skydome* skydome_ = nullptr;
 
-	// プレイヤーのモデル
-	Model* model_ = nullptr;
+	// モデル
+	Model* modelPlayer_ = nullptr;
+	Model* modelSkydome_ = nullptr;
+
 	WorldTransform worldTransform_;
 	Camera viewProjection_;
 	Camera camera_;

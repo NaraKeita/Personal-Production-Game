@@ -24,7 +24,7 @@ void Player::Initialize(Model* model, const Vector3& position) {
 void Player::Update() {  
 	worldTransform_.UpdateMatrix();  
 	worldTransform_.TransferMatrix();  
-
+	
 	// 入力による加速
 	if (input_->PushKey(DIK_LEFT) || input_->PushKey(DIK_A)) {
 		velocityX_ = -kCharacterSpeed;
@@ -54,6 +54,10 @@ void Player::Update() {
 		}
 	}
 
+	//if (input_->PushKey(DIK_S)) {
+	//	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 1.0f; // 正面
+	//}
+
 	// 旋回制御
 	if (turnTimer_ > 0.0f) {
 		turnTimer_ -= 1.0f / 60.0f; // 旋回タイマーを1/60秒分カウントダウンする
@@ -68,9 +72,7 @@ void Player::Update() {
 		MakeAffineMatrix(worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
 	}
 
-	if (velocityX_ == 0.0f) {
-		worldTransform_.rotation_.y = std::numbers::pi_v<float> / 1.0f;
-	}
+	
 
 	// 速度に応じて位置を更新
 	worldTransform_.translation_.x += velocityX_;

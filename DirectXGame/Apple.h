@@ -3,16 +3,15 @@
 
 using namespace KamataEngine;
 
-class Ground {
+class Apple {
 public:
-	void Initialize(Camera* camera);
+	void Initialize(Model* model, const Vector3& position);
 	void Update();
-	void Draw();
+	void Draw(Camera& camera);
 
 private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;
 	// モデル
 	Model* model_ = nullptr;
-	Camera* camera_ = nullptr;
 };

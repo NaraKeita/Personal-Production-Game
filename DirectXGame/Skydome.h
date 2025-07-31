@@ -5,9 +5,9 @@ using namespace KamataEngine;
 
 class Skydome {
 public:
-	void Initialize(Model* model, const Vector3& position);
+	void Initialize(Camera* camera);
 	void Update();
-	void Draw(Camera& camera);
+	void Draw();
 
 private:
 	// ワールド変換データ
@@ -15,4 +15,5 @@ private:
 	// モデル
 	Model* model_ = nullptr;
 
+	Camera* camera_ = nullptr;
 };

@@ -1,13 +1,8 @@
 #include "Skydome.h"
 
-void Skydome::Initialize(Model* model, const Vector3& position) {
-	// NULLポインタをチェックする
-	assert(model);
-
-	// 引数として受け取ったデータをメンバ変数に記録する
-	model_ = model;
-	worldTransform_.translation_ = position;
-	
+void Skydome::Initialize(Camera* camera) {
+	model_ = Model::CreateFromOBJ("skydome"); // 天球
+	camera_ = camera;
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
 }
@@ -17,4 +12,8 @@ void Skydome::Update() {
 	worldTransform_.TransferMatrix();
 }
 
-void Skydome::Draw(Camera& camera) { model_->Draw(worldTransform_, camera); }
+void Skydome::Draw() { 
+	Model::PreDraw();
+	model_->Draw(worldTransform_, *camera_);
+	Model::PostDraw();
+}

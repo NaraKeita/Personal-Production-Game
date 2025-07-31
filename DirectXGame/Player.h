@@ -9,11 +9,11 @@ enum class LRDirection {
 
 class Player {
 public:
-	void Initialize(Model* model, const Vector3& position);
+	void Initialize(Camera* camera);
 
 	void Update();
 
-	void Draw(Camera& camera);
+	void Draw();
 
 public:
 	Input* input_ = nullptr;
@@ -22,6 +22,9 @@ public:
 private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;
+
+	Camera* camera_ = nullptr;
+
 	// モデル
 	Model* model_ = nullptr;
 	// X方向の速度

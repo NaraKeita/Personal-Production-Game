@@ -1,16 +1,14 @@
 #include "Player.h"
 #include <numbers>
 #include "MathUtilityForText.h"
+#include <cassert>
 
-void Player::Initialize(Model* model, const Vector3& position) {
+void Player::Initialize(Camera* camera) {
 	// シングルトンインスタンスを取得する
 	input_ = Input::GetInstance();
-	// NULLポインタをチェックする
-	assert(model);
 
-	// 引数として受け取ったデータをメンバ変数に記録する
-	model_ = model;
-	worldTransform_.translation_ = position;
+	model_ = Model::CreateFromOBJ("player",true);
+
 	// 速度の初期化 worldTransform_.translation　に　velocityX_を入れている
 	velocityX_ = 0.0f; 
 
@@ -18,7 +16,7 @@ void Player::Initialize(Model* model, const Vector3& position) {
 	
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
-	
+	camera_ = camera;
 }
 
 void Player::Update() {  
@@ -72,12 +70,12 @@ void Player::Update() {
 		MakeAffineMatrix(worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
 	}
 
-	
-
 	// 速度に応じて位置を更新
 	worldTransform_.translation_.x += velocityX_;
 }
 
-void Player::Draw(Camera& camera) {    
-    model_->Draw(worldTransform_, camera);  
+void Player::Draw() {
+	Model::PreDraw();
+    model_->Draw(worldTransform_,*camera_);
+	Model::PostDraw();
 }

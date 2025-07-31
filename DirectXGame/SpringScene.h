@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Skydome.h"
 #include "Ground.h"
+#include "Tree.h"
 
 using namespace KamataEngine;
 
@@ -26,14 +27,17 @@ private:
 	Skydome* skydome_ = nullptr;
 	// 地面
 	Ground* ground_ = nullptr;
+	// 木
+	Tree* tree_ = nullptr;
 
 	// モデル
 	Model* modelPlayer_ = nullptr;
 	Model* modelSkydome_ = nullptr;
 	Model* modelGround_ = nullptr;
+	Model* modelTree_ = nullptr;
 
 	WorldTransform worldTransform_;
-	Camera viewProjection_;
-	Camera camera_;
+	//Camera viewProjection_;
+	Camera* camera_ = nullptr;
 
 };

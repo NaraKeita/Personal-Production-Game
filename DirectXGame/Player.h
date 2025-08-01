@@ -10,9 +10,7 @@ enum class LRDirection {
 class Player {
 public:
 	void Initialize(Camera* camera);
-
 	void Update();
-
 	void Draw();
 
 public:

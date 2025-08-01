@@ -14,6 +14,5 @@ private:
 	WorldTransform worldTransform_;
 	// モデル
 	Model* model_ = nullptr;
-
 	Camera* camera_ = nullptr;
 };

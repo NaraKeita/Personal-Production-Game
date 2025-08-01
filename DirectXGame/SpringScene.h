@@ -37,7 +37,7 @@ private:
 	Model* modelTree_ = nullptr;
 
 	WorldTransform worldTransform_;
-	//Camera viewProjection_;
+	
 	Camera* camera_ = nullptr;
 
 };

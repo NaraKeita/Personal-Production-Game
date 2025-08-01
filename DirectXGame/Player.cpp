@@ -1,7 +1,6 @@
 #include "Player.h"
 #include <numbers>
 #include "MathUtilityForText.h"
-#include <cassert>
 
 void Player::Initialize(Camera* camera) {
 	// シングルトンインスタンスを取得する
@@ -13,6 +12,8 @@ void Player::Initialize(Camera* camera) {
 	velocityX_ = 0.0f; 
 
 	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 2.0f;
+	// 位置
+	worldTransform_.translation_ = {0.0f, 0.0f, -20.0f};
 	
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
@@ -51,10 +52,6 @@ void Player::Update() {
 				velocityX_ = 0.0f;
 		}
 	}
-
-	//if (input_->PushKey(DIK_S)) {
-	//	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 1.0f; // 正面
-	//}
 
 	// 旋回制御
 	if (turnTimer_ > 0.0f) {

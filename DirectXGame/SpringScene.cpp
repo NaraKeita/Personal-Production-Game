@@ -1,5 +1,5 @@
 #include "SpringScene.h"
-#include <cassert>
+
 #include <math.h>
 #include <KamataEngine.h>
 
@@ -26,12 +26,6 @@ void SpringScene::Initialize() {
 
 	camera_ = new Camera();
 	camera_->Initialize();
-
-	// モデル
-	//modelPlayer_ = Model::CreateFromOBJ("player"); // プレイヤー
-	//modelSkydome_ = Model::CreateFromOBJ("skydome"); // 天球
-	//modelGround_ = Model::CreateFromOBJ("ground"); // 地面
-	//modelTree_ = Model::CreateFromOBJ("tree"); // 木
 
 	// ワールドトランスフォーム
 	worldTransform_.Initialize();
@@ -67,12 +61,6 @@ void SpringScene::Update() {
 	ground_->Update();
 	tree_->Update();
 
-	/*ImGui::Begin("camera");
-	ImGui::DragFloat3("camera:Toransform", camera_.translation_.x, 0.1f);
-	ImGui::DragFloat3("camera:Rotation", camera_.rotation_.x, 0.1f);
-	ImGui::End();*/
-
-	//camera_.UpdateMatrix();
 }
 
 void SpringScene::Draw() {  

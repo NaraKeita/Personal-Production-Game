@@ -1,5 +1,4 @@
 #include "Tree.h"
-#include <cassert>
 
 void Tree::Initialize(Camera* camera) {
 	worldTransform_.Initialize();

@@ -1,5 +1,5 @@
 #include "SpringScene.h"
-
+#include "Collision.h"
 #include <math.h>
 #include <KamataEngine.h>
 
@@ -11,11 +11,8 @@ SpringScene::~SpringScene() {
 	delete skydome_;
 	delete ground_;
 	delete tree_;
+	delete apple_;
 
-	delete modelPlayer_;
-	delete modelSkydome_;
-	delete modelGround_;
-	delete modelTree_;
 }
 
 void SpringScene::Initialize() {
@@ -50,6 +47,13 @@ void SpringScene::Initialize() {
 	// 木の初期化
 	tree_->Initialize(camera_);
 
+	// リンゴの生成
+	apple_ = new Apple();
+	// リンゴの初期化
+	apple_->Initialize(camera_);
+	apple_->SetPlayer(player_);
+	seAppleGet_ = audio_->LoadWave("mokugyo.wav");
+
 	// 軸方向
 	AxisIndicator::GetInstance()->SetVisible(true);
 	AxisIndicator::GetInstance()->SetTargetCamera(camera_);
@@ -60,7 +64,15 @@ void SpringScene::Update() {
 	player_->Update(); 
 	ground_->Update();
 	tree_->Update();
+	apple_->Update();
 
+	//// 追加: 当たり判定と処理
+	//if (apple_->IsActive() && CheckCollision(player_->GetPosition(), player_->GetRadius(), apple_->GetPosition(), apple_->GetRadius())) {
+	//	apple_->SetActive(false); // リンゴを消す
+	//	score_ += 10; // スコア加算（例: 10点）
+	//	// 効果音再生
+	//	audio_->PlayWave(seAppleGet_);   
+	//}
 }
 
 void SpringScene::Draw() {  
@@ -75,8 +87,10 @@ void SpringScene::Draw() {
 	skydome_->Draw();
 	ground_->Draw();
 	tree_->Draw();
+	apple_->Draw();
 
     // 3Dモデル描画後処理  
     Model::PostDraw();  
 }
+
 

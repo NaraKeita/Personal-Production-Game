@@ -38,7 +38,7 @@ private:
 	// 旋回タイマー
 	float turnTimer_ = 0.0f;
 	// キャラクターの移動速さ
-	float kCharacterSpeed = 0.5f;
+	float kCharacterSpeed = 0.3f;
 	float kFriction = 0.03f;
 
 	float radius_ = 1.0f; // モデルの大きさに合わせて調整

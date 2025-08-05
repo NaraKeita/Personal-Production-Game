@@ -1,6 +1,5 @@
 #include "SpringScene.h"
 #include "Collision.h"
-#include <math.h>
 #include <KamataEngine.h>
 
 using namespace KamataEngine;
@@ -12,6 +11,7 @@ SpringScene::~SpringScene() {
 	delete ground_;
 	delete tree_;
 	delete apple_;
+	delete displayNumbar_;
 
 }
 
@@ -21,38 +21,25 @@ void SpringScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
+	// 生成
 	camera_ = new Camera();
-	camera_->Initialize();
-
-	// ワールドトランスフォーム
-	worldTransform_.Initialize();
-	
-	// 自キャラの生成
 	player_ = new Player();
-	// 自キャラの初期化
-	player_->Initialize(camera_);
-
-	// 天球の生成
 	skydome_ = new Skydome();
-	// 天球の初期化
-	skydome_->Initialize(camera_);
-
-	// 地面の生成
 	ground_ = new Ground();
-	// 地面の初期化
-	ground_->Initialize(camera_);
-
-	// 木の生成
 	tree_ = new Tree();
-	// 木の初期化
-	tree_->Initialize(camera_);
-
-	// リンゴの生成
 	apple_ = new Apple();
-	// リンゴの初期化
+	displayNumbar_ = new DisplayNumbar();
+
+	// 初期化
+	camera_->Initialize();
+	worldTransform_.Initialize();
+	player_->Initialize(camera_);
+	skydome_->Initialize(camera_);
+	ground_->Initialize(camera_);
+	tree_->Initialize(camera_);
 	apple_->Initialize(camera_);
 	apple_->SetPlayer(player_);
-	seAppleGet_ = audio_->LoadWave("mokugyo.wav");
+	displayNumbar_->Initialize();
 
 	// 軸方向
 	AxisIndicator::GetInstance()->SetVisible(true);
@@ -62,9 +49,11 @@ void SpringScene::Initialize() {
 
 void SpringScene::Update() { 
 	player_->Update(); 
+	skydome_->Update();
 	ground_->Update();
 	tree_->Update();
 	apple_->Update();
+	displayNumbar_->Update();
 
 	//// 追加: 当たり判定と処理
 	//if (apple_->IsActive() && CheckCollision(player_->GetPosition(), player_->GetRadius(), apple_->GetPosition(), apple_->GetRadius())) {
@@ -78,7 +67,14 @@ void SpringScene::Update() {
 void SpringScene::Draw() {  
     // DirectXCommonのインスタンスを取得  
     DirectXCommon* dxCommon = DirectXCommon::GetInstance();  
-	dxCommon->ClearDepthBuffer();
+
+	Sprite::PreDraw(dxCommon->GetCommandList());
+
+	displayNumbar_->Draw();
+
+	Sprite::PostDraw();
+
+	//dxCommon->ClearDepthBuffer();  
 
     // 3Dモデル描画前処理
 	Model::PreDraw();

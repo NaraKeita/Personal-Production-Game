@@ -15,4 +15,5 @@ private:
 	// モデル
 	Model* model_ = nullptr;
 	Camera* camera_ = nullptr;
+
 };

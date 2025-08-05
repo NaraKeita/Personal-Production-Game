@@ -5,6 +5,7 @@
 void Apple::Initialize(Camera* camera) {
 	audio_ = Audio::GetInstance();
 	model_ = Model::CreateFromOBJ("apple");
+	seAppleGet_ = audio_->LoadWave("mokugyo.wav");
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
 	camera_ = camera;
@@ -24,7 +25,7 @@ void Apple::Update() {
 		static std::mt19937 gen(rd());
 		static std::uniform_real_distribution<float> dist(-8.0f, 8.0f);
 		float randomX = dist(gen);
-		worldTransform_.translation_ = {randomX, 20.0f, -20.0f};
+		worldTransform_.translation_ = {randomX, 10.0f, -20.0f};
 		worldTransform_.rotation_ = {0.0f, 0.0f, 0.0f};
 	};
 
@@ -32,17 +33,14 @@ void Apple::Update() {
 	bool isBelowGround = (worldTransform_.translation_.y < groundY);
    
 	if (player_) {
-		// if (IsActive() && CheckCollision(player_->GetPosition(), player_->GetRadius(), GetPosition(), GetRadius())) {
-		//	SetActive(false); // リンゴを消す
-		//	score_ += 10; // スコア加算（例: 10点）
-		//	// 効果音再生
-		//	audio_->PlayWave(seAppleGet_);
-		//}
+		// これがないと音が連続で鳴り続ける
+		bool wasHit = isHitPlayer_;
 		isHitPlayer_ = CheckCollision(worldTransform_.translation_, radius_, player_->GetPosition(), player_->GetRadius());
-		//SetActive(false);
-		score_ += 10; // スコア加算（例: 10点）
-		//効果音再生
-		audio_->PlayWave(seAppleGet_);   
+		if (!wasHit && isHitPlayer_) {
+			score_ += 10; // スコア加算
+			// 効果音再生
+			audio_->PlayWave(seAppleGet_);   
+		}
 	}
 
 	if (isBelowGround || isHitPlayer_) {

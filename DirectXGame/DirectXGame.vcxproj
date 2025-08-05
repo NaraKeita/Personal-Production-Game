@@ -156,6 +156,7 @@
   <ItemGroup>
     <ClCompile Include="Apple.cpp" />
     <ClCompile Include="Collision.cpp" />
+    <ClCompile Include="DisplayNumbar.cpp" />
     <ClCompile Include="Ground.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtilityForText.cpp" />
@@ -265,6 +266,7 @@
   <ItemGroup>
     <ClInclude Include="Apple.h" />
     <ClInclude Include="Collision.h" />
+    <ClInclude Include="DisplayNumbar.h" />
     <ClInclude Include="Ground.h" />
     <ClInclude Include="MathUtilityForText.h" />
     <ClInclude Include="Player.h" />

@@ -6,6 +6,7 @@ void Ground::Initialize(Camera* camera) {
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
 	camera_ = camera;
+
 }
 
 void Ground::Update() {

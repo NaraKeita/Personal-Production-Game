@@ -8,6 +8,8 @@ void Skydome::Initialize(Camera* camera) {
 }
 
 void Skydome::Update() {
+	worldTransform_.rotation_.y += 0.005f;
+
 	worldTransform_.UpdateMatrix();
 	worldTransform_.TransferMatrix();
 }

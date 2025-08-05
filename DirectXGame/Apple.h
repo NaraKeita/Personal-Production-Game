@@ -11,6 +11,7 @@ public:
 	void Draw();
 	void SetActive(bool active) { isActive_ = active; }
 	void SetPlayer(const Player* player) { player_ = player; }
+	void SetPosition(const Vector3& pos) { worldTransform_.translation_ = pos; }
 
 public:
 	const Vector3& GetPosition() const { return worldTransform_.translation_; }

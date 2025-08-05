@@ -9,12 +9,29 @@ void Apple::Initialize(Camera* camera) {
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
 	camera_ = camera;
+
+	// 種類ごとにモデルやテクスチャを切り替え
+	switch (type_) {
+	case AppleType::Red:
+		model_ = Model::CreateFromOBJ("apple_red");
+		break;
+	case AppleType::Green:
+		model_ = Model::CreateFromOBJ("apple_green");
+		break;
+	case AppleType::Gold:
+		model_ = Model::CreateFromOBJ("apple_gold");
+		break;
+	}
 }
 
 void Apple::Update() {
 	if (!isActive_) return;
 	worldTransform_.translation_.y -= 0.1f;
 	worldTransform_.rotation_.z += 0.1f;
+
+	//// 落下速度を加速
+	//worldTransform_.translation_.y -= fallSpeed_;
+	//fallSpeed_ += fallAccel_;
 
 	// 地面のY座標
 	constexpr float groundY = -5.0f;
@@ -27,19 +44,19 @@ void Apple::Update() {
 		float randomX = dist(gen);
 		worldTransform_.translation_ = {randomX, 10.0f, -20.0f};
 		worldTransform_.rotation_ = {0.0f, 0.0f, 0.0f};
+		fallSpeed_ = 0.1f; // リセット時に初期速度に戻す
 	};
 
 	// 地面より下 or プレイヤーと当たったら初期位置に戻す
 	bool isBelowGround = (worldTransform_.translation_.y < groundY);
    
 	if (player_) {
-		// これがないと音が連続で鳴り続ける
-		bool wasHit = isHitPlayer_;
+		bool wasHit = isHitPlayer_; // これがないと音が連続で鳴り続ける
 		isHitPlayer_ = CheckCollision(worldTransform_.translation_, radius_, player_->GetPosition(), player_->GetRadius());
 		if (!wasHit && isHitPlayer_) {
-			score_ += 10; // スコア加算
+			score_ += 1; // スコア加算
 			// 効果音再生
-			audio_->PlayWave(seAppleGet_);   
+			audio_->PlayWave(seAppleGet_);
 		}
 	}
 

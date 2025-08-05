@@ -48,31 +48,19 @@ void SpringScene::Initialize() {
 }
 
 void SpringScene::Update() { 
+	displayNumbar_->SetNumber(apple_->score_);
+
 	player_->Update(); 
 	skydome_->Update();
-	ground_->Update();
 	tree_->Update();
 	apple_->Update();
 	displayNumbar_->Update();
 
-	//// 追加: 当たり判定と処理
-	//if (apple_->IsActive() && CheckCollision(player_->GetPosition(), player_->GetRadius(), apple_->GetPosition(), apple_->GetRadius())) {
-	//	apple_->SetActive(false); // リンゴを消す
-	//	score_ += 10; // スコア加算（例: 10点）
-	//	// 効果音再生
-	//	audio_->PlayWave(seAppleGet_);   
-	//}
 }
 
 void SpringScene::Draw() {  
     // DirectXCommonのインスタンスを取得  
     DirectXCommon* dxCommon = DirectXCommon::GetInstance();  
-
-	Sprite::PreDraw(dxCommon->GetCommandList());
-
-	displayNumbar_->Draw();
-
-	Sprite::PostDraw();
 
 	//dxCommon->ClearDepthBuffer();  
 
@@ -87,6 +75,12 @@ void SpringScene::Draw() {
 
     // 3Dモデル描画後処理  
     Model::PostDraw();  
+
+	Sprite::PreDraw(dxCommon->GetCommandList());
+
+	displayNumbar_->Draw();
+
+	Sprite::PostDraw();
 }
 
 

@@ -4,6 +4,10 @@
 
 using namespace KamataEngine;
 
+enum class AppleType {
+	Red, Green, Gold 
+};
+
 class Apple {
 public:
 	void Initialize(Camera* camera);
@@ -12,6 +16,8 @@ public:
 	void SetActive(bool active) { isActive_ = active; }
 	void SetPlayer(const Player* player) { player_ = player; }
 	void SetPosition(const Vector3& pos) { worldTransform_.translation_ = pos; }
+	void SetType(AppleType type) { type_ = type; }
+	AppleType GetType() const { return type_; }
 
 public:
 	const Vector3& GetPosition() const { return worldTransform_.translation_; }
@@ -30,6 +36,11 @@ private:
 	bool isActive_ = true;
 	bool isHitPlayer_ = false;
 	const Player* player_ = nullptr;
+
+	float fallSpeed_ = 0.1f;  // 初期落下速度
+	//float fallAccel_ = 0.0001f; // 加速度
+
+	AppleType type_ = AppleType::Red;
 
 	float radius_ = 1.0f; // モデルの大きさに合わせて調整
 };

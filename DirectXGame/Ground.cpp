@@ -2,7 +2,7 @@
 
 void Ground::Initialize(Camera* camera) {
 	Vector3 startGroundPos = {0.0f, -1.0f, 0.0f};
-	model_ = Model::CreateFromOBJ("ground"); // 地面
+	model_ = Model::CreateFromOBJ("ground");
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
 	camera_ = camera;

@@ -1,5 +1,5 @@
 #pragma once  
-#include "..\External\KamataEngine\include\2d\Sprite.h"
+#include <algorithm> // これがないとclampが使えない
 #include "KamataEngine.h"
 
 class DisplayNumbar {
@@ -12,6 +12,8 @@ public:
 
 	// 描画
 	void Draw();
+
+	void SetNumber(int number) { number_ = std::clamp(number, 0, 99999); }
 
 public:
 	// 色変更オブジェクト

@@ -3,7 +3,7 @@
 void Tree::Initialize(Camera* camera) {
 	worldTransform_.Initialize();
 	camera_ = camera;
-	model_ = Model::CreateFromOBJ("tree"); // 木
+	model_ = Model::CreateFromOBJ("tree");
 	// 揺れ制御用変数の初期化
 	swingTime_ = 0.0f;
 	swingActive_ = true;

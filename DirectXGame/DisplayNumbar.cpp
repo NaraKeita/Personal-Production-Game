@@ -1,8 +1,6 @@
 #include "DisplayNumbar.h"
-#include <algorithm>
 
 using namespace KamataEngine;
-using namespace MathUtility;
 
 void DisplayNumbar::Initialize() {
 	// ワールド変換データの初期化
@@ -17,7 +15,7 @@ void DisplayNumbar::Initialize() {
 
 	for (int i = 0; i < 5; i++) {
 		// 横位置をずらして生成
-		KamataEngine::Vector2 pos = {500.0f + charSize_.x * i, 5.0f};
+		KamataEngine::Vector2 pos = {100.0f + charSize_.x * i, 5.0f};
 		sprite_[i] = Sprite::Create(textureHandle_, pos);
 		sprite_[i]->SetSize(charSize_);
 		sprite_[i]->SetTextureRect({0, 0}, charSize_);

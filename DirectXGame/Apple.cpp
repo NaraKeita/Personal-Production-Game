@@ -10,18 +10,18 @@ void Apple::Initialize(Camera* camera) {
 	worldTransform_.Initialize();
 	camera_ = camera;
 
-	// 種類ごとにモデルやテクスチャを切り替え
-	switch (type_) {
-	case AppleType::Red:
-		model_ = Model::CreateFromOBJ("apple_red");
-		break;
-	case AppleType::Green:
-		model_ = Model::CreateFromOBJ("apple_green");
-		break;
-	case AppleType::Gold:
-		model_ = Model::CreateFromOBJ("apple_gold");
-		break;
-	}
+	//// 種類ごとにモデルやテクスチャを切り替え
+	//switch (type_) {
+	//case AppleType::Red:
+	//	model_ = Model::CreateFromOBJ("apple_red");
+	//	break;
+	//case AppleType::Green:
+	//	model_ = Model::CreateFromOBJ("apple_green");
+	//	break;
+	//case AppleType::Gold:
+	//	model_ = Model::CreateFromOBJ("apple_gold");
+	//	break;
+	//}
 }
 
 void Apple::Update() {

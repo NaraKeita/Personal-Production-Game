@@ -8,6 +8,7 @@ enum class AppleType {
 	Red, Green, Gold 
 };
 
+
 class Apple {
 public:
 	void Initialize(Camera* camera);

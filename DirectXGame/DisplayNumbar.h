@@ -14,6 +14,7 @@ public:
 	void Draw();
 
 	void SetNumber(int number) { number_ = std::clamp(number, 0, 99999); }
+	void SetPoisonNumber(int number) { number_ = std::clamp(number, 0, 99999); }
 
 public:
 	// 色変更オブジェクト

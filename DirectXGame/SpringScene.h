@@ -5,6 +5,7 @@
 #include "Ground.h"
 #include "Tree.h"
 #include "Apple.h"
+#include "PoisonApple.h"
 #include "DisplayNumbar.h"
 
 using namespace KamataEngine;
@@ -37,9 +38,11 @@ private:
 	Tree* tree_ = nullptr;
 	// リンゴ
 	Apple* apple_ = nullptr;
+	// 毒リンゴ
+	PoisonApple* poisonApple_ = nullptr;
 	// 数字の表示
 	DisplayNumbar* displayNumbar_ = nullptr; 
-
+	
 	WorldTransform worldTransform_;
 	
 	Camera* camera_ = nullptr;

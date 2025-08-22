@@ -161,6 +161,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MathUtilityForText.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PoisonApple.cpp" />
     <ClCompile Include="Skydome.cpp" />
     <ClCompile Include="SpringScene.cpp" />
     <ClCompile Include="Tree.cpp" />
@@ -270,6 +271,7 @@
     <ClInclude Include="Ground.h" />
     <ClInclude Include="MathUtilityForText.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PoisonApple.h" />
     <ClInclude Include="Skydome.h" />
     <ClInclude Include="SpringScene.h" />
     <ClInclude Include="Tree.h" />

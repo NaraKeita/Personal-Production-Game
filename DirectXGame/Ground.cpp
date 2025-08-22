@@ -10,7 +10,7 @@ void Ground::Initialize(Camera* camera) {
 }
 
 void Ground::Update() {
-	worldTransform_.UpdateMatrix();
+	//worldTransform_.UpdateMatrix();
 	worldTransform_.TransferMatrix();
 }
 

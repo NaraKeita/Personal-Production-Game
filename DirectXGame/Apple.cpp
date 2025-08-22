@@ -10,28 +10,12 @@ void Apple::Initialize(Camera* camera) {
 	worldTransform_.Initialize();
 	camera_ = camera;
 
-	//// 種類ごとにモデルやテクスチャを切り替え
-	//switch (type_) {
-	//case AppleType::Red:
-	//	model_ = Model::CreateFromOBJ("apple_red");
-	//	break;
-	//case AppleType::Green:
-	//	model_ = Model::CreateFromOBJ("apple_green");
-	//	break;
-	//case AppleType::Gold:
-	//	model_ = Model::CreateFromOBJ("apple_gold");
-	//	break;
-	//}
 }
 
 void Apple::Update() {
 	if (!isActive_) return;
 	worldTransform_.translation_.y -= 0.1f;
 	worldTransform_.rotation_.z += 0.1f;
-
-	//// 落下速度を加速
-	//worldTransform_.translation_.y -= fallSpeed_;
-	//fallSpeed_ += fallAccel_;
 
 	// 地面のY座標
 	constexpr float groundY = -5.0f;

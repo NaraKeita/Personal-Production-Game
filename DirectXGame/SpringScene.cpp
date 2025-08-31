@@ -64,7 +64,7 @@ void SpringScene::Update() {
 	displayNumbar_->Update();
 
 	displayNumbar_->SetNumber(apple_->score_);
-	displayNumbar_->SetNumber(poisonApple_->poisonScore_);
+	//displayNumbar_->SetNumber(poisonApple_->poisonScore_);
 
 
 	

@@ -1,6 +1,6 @@
 #include "Player.h"
 #include <numbers>
-#include "MathUtilityForText.h"
+#include "MathUtilityForText.h" // 旋回をやりたいから入れている
 
 void Player::Initialize(Camera* camera) {
 	// シングルトンインスタンスを取得する

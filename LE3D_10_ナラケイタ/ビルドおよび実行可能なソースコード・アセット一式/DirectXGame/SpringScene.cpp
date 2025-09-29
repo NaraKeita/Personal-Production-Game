@@ -1,6 +1,5 @@
 #include "SpringScene.h"
-
-#include <math.h>
+#include "Collision.h"
 #include <KamataEngine.h>
 
 using namespace KamataEngine;
@@ -11,11 +10,10 @@ SpringScene::~SpringScene() {
 	delete skydome_;
 	delete ground_;
 	delete tree_;
-
-	delete modelPlayer_;
-	delete modelSkydome_;
-	delete modelGround_;
-	delete modelTree_;
+	delete apple_;
+	delete poisonApple_;
+	delete displayNumbar_;
+	
 }
 
 void SpringScene::Initialize() {
@@ -24,32 +22,33 @@ void SpringScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
+	// 生成
 	camera_ = new Camera();
-	camera_->Initialize();
-
-	// ワールドトランスフォーム
-	worldTransform_.Initialize();
-	
-	// 自キャラの生成
 	player_ = new Player();
-	// 自キャラの初期化
-	player_->Initialize(camera_);
-
-	// 天球の生成
 	skydome_ = new Skydome();
-	// 天球の初期化
-	skydome_->Initialize(camera_);
-
-	// 地面の生成
 	ground_ = new Ground();
-	// 地面の初期化
-	ground_->Initialize(camera_);
-
-	// 木の生成
 	tree_ = new Tree();
-	// 木の初期化
-	tree_->Initialize(camera_);
+	apple_ = new Apple();
+	poisonApple_ = new PoisonApple();
+	displayNumbar_ = new DisplayNumbar();
 
+	// スコア設定
+	apple_->score_ = 1;
+	poisonApple_->poisonScore_ = -1;
+	
+	// 初期化
+	camera_->Initialize();
+	worldTransform_.Initialize();
+	player_->Initialize(camera_);
+	skydome_->Initialize(camera_);
+	ground_->Initialize(camera_);
+	tree_->Initialize(camera_);
+	apple_->Initialize(camera_);
+	apple_->SetPlayer(player_);
+	poisonApple_->Initialize(camera_);
+	poisonApple_->SetPlayer(player_);
+	displayNumbar_->Initialize();
+	
 	// 軸方向
 	AxisIndicator::GetInstance()->SetVisible(true);
 	AxisIndicator::GetInstance()->SetTargetCamera(camera_);
@@ -58,15 +57,24 @@ void SpringScene::Initialize() {
 
 void SpringScene::Update() { 
 	player_->Update(); 
-	ground_->Update();
+	skydome_->Update();
 	tree_->Update();
+	apple_->Update();
+	poisonApple_->Update();
+	displayNumbar_->Update();
 
+	displayNumbar_->SetNumber(apple_->score_);
+	//displayNumbar_->SetNumber(poisonApple_->poisonScore_);
+
+
+	
 }
 
 void SpringScene::Draw() {  
     // DirectXCommonのインスタンスを取得  
     DirectXCommon* dxCommon = DirectXCommon::GetInstance();  
-	dxCommon->ClearDepthBuffer();
+
+	//dxCommon->ClearDepthBuffer();  
 
     // 3Dモデル描画前処理
 	Model::PreDraw();
@@ -75,8 +83,17 @@ void SpringScene::Draw() {
 	skydome_->Draw();
 	ground_->Draw();
 	tree_->Draw();
+	apple_->Draw();
+	poisonApple_->Draw();
 
     // 3Dモデル描画後処理  
     Model::PostDraw();  
+
+	Sprite::PreDraw(dxCommon->GetCommandList());
+
+	displayNumbar_->Draw();
+
+	Sprite::PostDraw();
 }
+
 

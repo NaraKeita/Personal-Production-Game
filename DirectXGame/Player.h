@@ -9,10 +9,15 @@ enum class LRDirection {
 
 class Player {
 public:
+	void SetSpeed(float speed);
+	void ResetoreSpeed();           // 一定時間経ったらスピードが元に戻る
+
 	void Initialize(Camera* camera);
 	void Update();
 	void Draw();
 
+	void AddPoisonHit(); // 毒リンゴヒット時に呼ぶ
+	float GetSpeed() const { return kCharacterSpeed; }
 	const Vector3& GetPosition() const { return worldTransform_.translation_; }
 	float GetRadius() const { return radius_; }
 
@@ -38,7 +43,10 @@ private:
 	// 旋回タイマー
 	float turnTimer_ = 0.0f;
 	// キャラクターの移動速さ
-	float kCharacterSpeed = 0.3f;
+	float kCharacterSpeed = 0.3f;        //通常時のスピード
+	int poisonHitCount_ = 0;             // 毒リンゴヒット回数
+	float defaultSpeed_ = 0.3f;          // 元に戻す用の通常時のスピード
+	float speedResetoreTimer_ = 0.0f;    // スピードの復元用タイマー
 	float kFriction = 0.03f;
 
 	float radius_ = 1.0f; // モデルの大きさに合わせて調整

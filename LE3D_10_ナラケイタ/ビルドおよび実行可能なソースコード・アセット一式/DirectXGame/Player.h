@@ -13,6 +13,9 @@ public:
 	void Update();
 	void Draw();
 
+	const Vector3& GetPosition() const { return worldTransform_.translation_; }
+	float GetRadius() const { return radius_; }
+
 public:
 	Input* input_ = nullptr;
 	LRDirection lrDirection_ = LRDirection::kRight;
@@ -35,7 +38,8 @@ private:
 	// 旋回タイマー
 	float turnTimer_ = 0.0f;
 	// キャラクターの移動速さ
-	float kCharacterSpeed = 0.5f;
+	float kCharacterSpeed = 0.3f;
 	float kFriction = 0.03f;
 
+	float radius_ = 1.0f; // モデルの大きさに合わせて調整
 };

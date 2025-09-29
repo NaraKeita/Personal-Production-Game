@@ -4,6 +4,9 @@
 #include "Skydome.h"
 #include "Ground.h"
 #include "Tree.h"
+#include "Apple.h"
+#include "PoisonApple.h"
+#include "DisplayNumbar.h"
 
 using namespace KamataEngine;
 
@@ -15,7 +18,11 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
+	std::vector<Apple*> apples_;
 
+private:
+	int score_ = 0; // スコア
+	uint32_t seAppleGet_ = 0; // 効果音
 
 private:
 	DirectXCommon* dxCommon_ = nullptr;
@@ -29,13 +36,13 @@ private:
 	Ground* ground_ = nullptr;
 	// 木
 	Tree* tree_ = nullptr;
-
-	// モデル
-	Model* modelPlayer_ = nullptr;
-	Model* modelSkydome_ = nullptr;
-	Model* modelGround_ = nullptr;
-	Model* modelTree_ = nullptr;
-
+	// リンゴ
+	Apple* apple_ = nullptr;
+	// 毒リンゴ
+	PoisonApple* poisonApple_ = nullptr;
+	// 数字の表示
+	DisplayNumbar* displayNumbar_ = nullptr; 
+	
 	WorldTransform worldTransform_;
 	
 	Camera* camera_ = nullptr;

@@ -1,4 +1,3 @@
-#include <Windows.h>
 #include "SpringScene.h"
 #include "kamataEngine.h"
 #include <Windows.h>

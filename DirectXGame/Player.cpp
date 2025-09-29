@@ -1,6 +1,17 @@
 #include "Player.h"
 #include <numbers>
 #include "MathUtilityForText.h" // 旋回をやりたいから入れている
+#include <algorithm>
+
+void Player::SetSpeed(float speed) { 
+	kCharacterSpeed = speed;
+	speedResetoreTimer_ = 3.0f;
+}
+
+void Player::ResetoreSpeed() {
+	kCharacterSpeed = defaultSpeed_;
+	speedResetoreTimer_ = 0.0f;
+}
 
 void Player::Initialize(Camera* camera) {
 	// シングルトンインスタンスを取得する
@@ -67,6 +78,14 @@ void Player::Update() {
 		MakeAffineMatrix(worldTransform_.scale_, worldTransform_.rotation_, worldTransform_.translation_);
 	}
 
+	// スピード復元タイマー処理
+	if (speedResetoreTimer_ > 0.0f) {
+		speedResetoreTimer_ -= 1.0f / 60.0f; // 1フレーム分減算（60FPS想定）
+		if (speedResetoreTimer_ <= 0.0f) {
+			ResetoreSpeed();
+		}
+	}
+
 	// 速度に応じて位置を更新
 	worldTransform_.translation_.x += velocityX_;
 }
@@ -75,4 +94,10 @@ void Player::Draw() {
 	Model::PreDraw();
     model_->Draw(worldTransform_,*camera_);
 	Model::PostDraw();
+}
+
+void Player::AddPoisonHit() {
+	poisonHitCount_++;
+	// 毒リンゴ1回ごとに0.05ずつ遅くする（最低0.05まで）
+	kCharacterSpeed = std::max(0.05f, defaultSpeed_ - poisonHitCount_ * 0.05f);
 }

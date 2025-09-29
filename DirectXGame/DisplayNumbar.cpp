@@ -25,16 +25,17 @@ void DisplayNumbar::Initialize() {
 void DisplayNumbar::Update() {
 	frameCount_++;
     number_++;
-
+	
 	if (number_ > 99999) {
 		number_ = 0; // 5桁でループ
 	}
-    
+
     worldTransform_.UpdateMatrix();
 }
 
 void DisplayNumbar::Draw() {
 	int num = number_;
+	
 	for (int i = 4; i >= 0; i--) {
 		int digit = num % 10;
 		num /= 10;

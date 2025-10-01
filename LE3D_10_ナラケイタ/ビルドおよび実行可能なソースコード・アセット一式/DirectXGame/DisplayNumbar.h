@@ -14,8 +14,7 @@ public:
 	void Draw();
 
 	void SetNumber(int number) { number_ = std::clamp(number, 0, 99999); }
-	void SetPoisonNumber(int number) { number_ = std::clamp(number, 0, 99999); }
-
+	
 public:
 	// 色変更オブジェクト
 	KamataEngine::ObjectColor objectColor_;
@@ -36,4 +35,5 @@ private:
 
 	int frameCount_ = 0;
 	int number_ = 0;
+	int poisonNumber_ = 0;
 };

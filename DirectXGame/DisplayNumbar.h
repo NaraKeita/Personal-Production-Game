@@ -13,7 +13,9 @@ public:
 	// 描画
 	void Draw();
 
+	void SetStartNumber(int number) { numberStart_ = number; }
 	void SetNumber(int number) { number_ = std::clamp(number, 0, 99999); }
+	void SetTimerNumber(int number) { numberTimer_ = std::clamp(number, 0, 99); }
 	
 public:
 	// 色変更オブジェクト
@@ -22,18 +24,20 @@ public:
 	KamataEngine::Vector4 color_;
 	// 移動量
 	KamataEngine::Vector3 velocity_;
-
+	KamataEngine::Sprite* sprite_[5] = {};
+	
 private:
 	// ワールド変換データ
 	KamataEngine::WorldTransform worldTransform_;
 
 	uint32_t textureHandle_ = 0;
 	
-	KamataEngine::Sprite* sprite_[5] = {};
+	
 	
 	KamataEngine::Vector2 charSize_; // 1文字分
 
 	int frameCount_ = 0;
+	int numberStart_ = 0;
 	int number_ = 0;
-	int poisonNumber_ = 0;
+	int numberTimer_ = 0;
 };

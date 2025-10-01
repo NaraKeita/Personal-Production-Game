@@ -41,9 +41,8 @@ void PoisonApple::Update() {
 			score_ -= 1; // スコア加算
 			// プレイヤーのスピードを遅くする
 			Player* mutablePlayer = const_cast<Player*>(player_);
-			//mutablePlayer->SetSpeed(0.1f); // 例: 通常0.3f→0.1fに減速
-			mutablePlayer->AddPoisonHit(); // 毒リンゴヒット回数を加算＆スピード減少
-    
+			mutablePlayer->SetSpeed(0.05f); // 例: 通常0.3f→0.1fに減速
+			
 			// 効果音再生
 			audio_->PlayWave(seAppleGet_);
 		}

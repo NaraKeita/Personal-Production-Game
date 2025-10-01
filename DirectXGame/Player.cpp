@@ -1,7 +1,6 @@
 #include "Player.h"
 #include <numbers>
 #include "MathUtilityForText.h" // 旋回をやりたいから入れている
-#include <algorithm>
 
 void Player::SetSpeed(float speed) { 
 	kCharacterSpeed = speed;
@@ -94,10 +93,4 @@ void Player::Draw() {
 	Model::PreDraw();
     model_->Draw(worldTransform_,*camera_);
 	Model::PostDraw();
-}
-
-void Player::AddPoisonHit() {
-	poisonHitCount_++;
-	// 毒リンゴ1回ごとに0.05ずつ遅くする（最低0.05まで）
-	kCharacterSpeed = std::max(0.05f, defaultSpeed_ - poisonHitCount_ * 0.05f);
 }

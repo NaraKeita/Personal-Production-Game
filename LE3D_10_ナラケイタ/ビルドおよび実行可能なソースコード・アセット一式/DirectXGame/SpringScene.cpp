@@ -34,7 +34,6 @@ void SpringScene::Initialize() {
 
 	// スコア設定
 	apple_->score_ = 1;
-	poisonApple_->poisonScore_ = -1;
 	
 	// 初期化
 	camera_->Initialize();
@@ -63,9 +62,9 @@ void SpringScene::Update() {
 	poisonApple_->Update();
 	displayNumbar_->Update();
 
+	
+	//displayNumbar_->SetNumber();
 	displayNumbar_->SetNumber(apple_->score_);
-	//displayNumbar_->SetNumber(poisonApple_->poisonScore_);
-
 
 	
 }

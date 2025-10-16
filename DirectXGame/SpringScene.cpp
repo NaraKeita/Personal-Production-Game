@@ -56,7 +56,10 @@ void SpringScene::Initialize() {
 	timeNumbar_->Initialize();
 
 	// 始まる前のカウント3秒（画面中央に置いている）
-	countdownNumbar_->sprite_[0]->SetPosition({600.0f + 32.0f, 200.0f});
+	for (int i = 0; i < 1; i++) {
+		countdownNumbar_->sprite_[i]->SetPosition({600.0f + 32.0f, 200.0f});
+	}
+	
 	
 	// スコア表示位置（左上に置いている）
 	for (int i = 0; i < 5; i++) {
@@ -87,6 +90,9 @@ void SpringScene::Update() {
 			showStartTextFrame_ = 1;
 		}
 		// リターンして他の処理を止めている
+		// カウントダウン用DisplayNumbarに値をセット
+		int count = static_cast<int>(std::ceil(startCountdown_));
+		countdownNumbar_->SetStartNumber(count); // SetStartNumberではなくSetNumberでOK
 		return;
 	}
 
@@ -145,8 +151,8 @@ void SpringScene::Draw() {
 	
 
 	if (!isStarted_) {
-		int count = static_cast<int>(std::ceil(startCountdown_));
-		countdownNumbar_->SetNumber(count);
+		//int count = static_cast<int>(std::ceil(startCountdown_));
+		//countdownNumbar_->SetStartNumber(count);
 		countdownNumbar_->Draw();
 	} else {
 		scoreNumbar_->Draw();

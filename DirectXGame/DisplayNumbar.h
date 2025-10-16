@@ -13,7 +13,7 @@ public:
 	// 描画
 	void Draw();
 
-	void SetStartNumber(int number) { numberStart_ = number; }
+	void SetStartNumber(int number) { numberStart_ = std::clamp(number, 0, 99); }
 	void SetNumber(int number) { number_ = std::clamp(number, 0, 99999); }
 	void SetTimerNumber(int number) { numberTimer_ = std::clamp(number, 0, 99); }
 	

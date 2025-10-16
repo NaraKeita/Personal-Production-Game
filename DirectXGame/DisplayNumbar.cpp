@@ -11,19 +11,19 @@ void DisplayNumbar::Initialize() {
 	color_ = {0, 0, 0, 0};
 
 	textureHandle_ = TextureManager::Load("number.png");
-	charSize_ = {32.0f, 64.0f}; // 1文字分のサイズ（例）
+	charSize_ = {32.0f, 64.0f}; // 1文字分のサイズ
 
 	for (int i = 0; i < 5; i++) {
 		// 横位置をずらして生成
-		KamataEngine::Vector2 pos = {100.0f + charSize_.x * i, 5.0f};
+		KamataEngine::Vector2 pos = {200.0f + charSize_.x * i, 5.0f};
 		sprite_[i] = Sprite::Create(textureHandle_, pos);
 		sprite_[i]->SetSize(charSize_);
 		sprite_[i]->SetTextureRect({0, 0}, charSize_);
 	}
-	KamataEngine::Vector2 startpos = {100.0f + charSize_.x, 5.0f};
+	/*KamataEngine::Vector2 startpos = {100.0f + charSize_.x, 5.0f};
 	sprite_[0] = Sprite::Create(textureHandle_, startpos);
 	sprite_[0]->SetSize(charSize_);
-	sprite_[0]->SetTextureRect({0, 0}, charSize_);
+	sprite_[0]->SetTextureRect({0, 0}, charSize_);*/
 }
 
 void DisplayNumbar::Update() {
@@ -52,11 +52,13 @@ void DisplayNumbar::Draw() {
 	int startNum_ = numberStart_;
 	int num = number_;
 	int timeNum = numberTimer_;
-	int digitStart = startNum_ % 10;
-	//startNum_ /= 10;
-	sprite_[0]->SetTextureRect({charSize_.x * digitStart, 0}, charSize_);
-	sprite_[0]->Draw();
-	
+
+	for (int i = 1; i >= 0; i--) {
+		int digitStart = startNum_ % 10;
+		startNum_ /= 10;
+		sprite_[i]->SetTextureRect({charSize_.x * digitStart, 0}, charSize_);
+		sprite_[i]->Draw();
+	}
 
 	// スコア用
 	for (int i = 4; i >= 0; i--) {

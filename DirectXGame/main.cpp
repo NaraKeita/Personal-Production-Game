@@ -47,7 +47,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		// ImGui受付開始
 		imGuiManager->Begin();
 
-		//springScene->Update();
+		// springScene->Update();
 
 		ChangeScene();
 		UpdateScene();
@@ -56,7 +56,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 		dxCommon->PreDraw();
 
-		//springScene->Draw();
+		// springScene->Draw();
 		DrawScene();
 
 		imGuiManager->Draw();
@@ -102,7 +102,6 @@ void ChangeScene() {
 			titleScene->Initialize();
 		}
 		break;
-	
 	}
 }
 
@@ -115,7 +114,6 @@ void UpdateScene() {
 	case Scene::kGame:
 		springScene->Update();
 		break;
-	
 	}
 }
 
@@ -128,6 +126,5 @@ void DrawScene() {
 	case Scene::kGame:
 		springScene->Draw();
 		break;
-	
 	}
 }

@@ -37,7 +37,7 @@ void SpringScene::Initialize() {
 	timeNumbar_ = new DisplayNumbar();
 
 	// スコア設定
-	apple_->score_ = 1;
+	apple_->score_ = 0;
 	
 	// 初期化
 	camera_->Initialize();

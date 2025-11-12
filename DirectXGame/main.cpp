@@ -1,6 +1,7 @@
 #include "SpringScene.h"
 #include "TitleScene.h"
 #include "kamataEngine.h"
+#include "SpriteManager/GlobalSpriteManger.h"
 #include <Windows.h>
 
 using namespace KamataEngine;

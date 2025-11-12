@@ -13,7 +13,6 @@ public:
 	// 描画
 	void Draw();
 
-	void SetStartNumber(int number) { numberStart_ = std::clamp(number, 0, 99); }
 	void SetNumber(int number) { number_ = std::clamp(number, 0, 99999); }
 	void SetTimerNumber(int number) { numberTimer_ = std::clamp(number, 0, 99); }
 	
@@ -37,7 +36,6 @@ private:
 	KamataEngine::Vector2 charSize_; // 1文字分
 
 	int frameCount_ = 0;
-	int numberStart_ = 0;
 	int number_ = 0;
 	int numberTimer_ = 0;
 };

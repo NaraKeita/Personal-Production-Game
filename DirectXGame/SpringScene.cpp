@@ -14,7 +14,7 @@ SpringScene::~SpringScene() {
 	delete apple_;
 	delete poisonApple_;
 	delete displayNumbar_;
-	delete countdownNumbar_;
+
 }
 
 void SpringScene::Initialize() {
@@ -32,7 +32,6 @@ void SpringScene::Initialize() {
 	apple_ = new Apple();
 	poisonApple_ = new PoisonApple();
 	displayNumbar_ = new DisplayNumbar();
-	countdownNumbar_ = new DisplayNumbar();
 	scoreNumbar_ = new DisplayNumbar();
 	timeNumbar_ = new DisplayNumbar();
 
@@ -51,28 +50,29 @@ void SpringScene::Initialize() {
 	poisonApple_->Initialize(camera_);
 	poisonApple_->SetPlayer(player_);
 	displayNumbar_->Initialize();
-	countdownNumbar_->Initialize();
 	scoreNumbar_->Initialize();
 	timeNumbar_->Initialize();
 
-	// 始まる前のカウント3秒（画面中央に置いている）
-	for (int i = 0; i < 1; i++) {
-		countdownNumbar_->sprite_[i]->SetPosition({600.0f + 32.0f, 200.0f});
+	countdownHandles_[0] = TextureManager::Load("NumberSystem/start/count3.png"); // 3秒
+	countdownHandles_[1] = TextureManager::Load("NumberSystem/start/count2.png"); // 2秒
+	countdownHandles_[2] = TextureManager::Load("NumberSystem/start/count1.png"); // 1秒
+	countdownHandles_[3] = TextureManager::Load("NumberSystem/start/start.png");  // START!
+
+	// 始まる前のカウント
+	for (int i = 0; i < 4; i++) {
+		countdownSprites_[i] = Sprite::Create(countdownHandles_[i], {600.0f, 200.0f});
 	}
-	
-	
+
 	// スコア表示位置（左上に置いている）
 	for (int i = 0; i < 5; i++) {
 		scoreNumbar_->sprite_[i]->SetPosition({100.0f + 32.0f * i, 5.0f});
 	}
+
 	// 残り時間表示位置（真ん中に置いている）
 	for (int i = 0; i < 2; i++) {
 		timeNumbar_->sprite_[i]->SetPosition({600.0f + 32.0f * i, 5.0f});
 	}
 
-	startHandle_ = TextureManager::Load("start/start.png");
-	spriteStart_ = Sprite::Create(startHandle_, {0, 0});
-	
 	// 軸方向
 	AxisIndicator::GetInstance()->SetVisible(true);
 	AxisIndicator::GetInstance()->SetTargetCamera(camera_);
@@ -80,28 +80,15 @@ void SpringScene::Initialize() {
 }
 
 void SpringScene::Update() { 
-	// ゲーム開始前のカウントダウン
+	// ゲーム開始前のカウントダウン （ 3秒 ）
 	if (!isStarted_) {
 		startCountdown_ -= 1.0f / 60.0f;
 		if (startCountdown_ <= 0.0f) {
 			isStarted_ = true;
 			startCountdown_ = 0.0f;
-			showStartText_ = true;
-			showStartTextFrame_ = 1;
 		}
-		// リターンして他の処理を止めている
-		// カウントダウン用DisplayNumbarに値をセット
-		int count = static_cast<int>(std::ceil(startCountdown_));
-		countdownNumbar_->SetStartNumber(count); // SetStartNumberではなくSetNumberでOK
+		
 		return;
-	}
-
-	//「START!」表示中は1フレームだけカウント
-	if (showStartText_) {
-		showStartTextFrame_--;
-		if (showStartTextFrame_ <= 0) {
-			showStartText_ = false;
-		}
 	}
 
 	player_->Update(); 
@@ -110,9 +97,8 @@ void SpringScene::Update() {
 	apple_->Update();
 	poisonApple_->Update();
 	displayNumbar_->Update();
-
-	scoreNumbar_->SetNumber(apple_->score_);
-	timeNumbar_->SetTimerNumber(static_cast<int>(std::ceil(timeLimit_)));
+	scoreNumbar_->SetNumber(apple_->score_);                                // スコア
+	timeNumbar_->SetTimerNumber(static_cast<int>(std::ceil(timeLimit_)));   // 時間制限
 
 	// 1フレームあたりの経過時間
 	timeLimit_ -= 1.0f / 60.0f; //（30秒）
@@ -148,12 +134,18 @@ void SpringScene::Draw() {
 
 	Sprite::PreDraw(dxCommon->GetCommandList());
 
-	
-
 	if (!isStarted_) {
-		//int count = static_cast<int>(std::ceil(startCountdown_));
-		//countdownNumbar_->SetStartNumber(count);
-		countdownNumbar_->Draw();
+		int countIndex = 0;
+		if (startCountdown_ > 2.0f) {
+			countIndex = 0; // 3
+		} else if (startCountdown_ > 1.0f) {
+			countIndex = 1; // 2
+		} else if (startCountdown_ > 0.0f) {
+			countIndex = 2; // 1
+		} else {
+			countIndex = 3; // START!
+		}
+		countdownSprites_[countIndex]->Draw();
 	} else {
 		scoreNumbar_->Draw();
 		timeNumbar_->Draw();

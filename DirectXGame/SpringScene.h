@@ -65,4 +65,7 @@ private:
 	Sprite* spriteStart_ = nullptr;
 	uint32_t startHandle_ = 0;
 
+	uint32_t countdownHandles_[4];
+	Sprite* countdownSprites_[4];
+
 };

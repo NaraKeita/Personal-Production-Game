@@ -164,6 +164,8 @@
     <ClCompile Include="PoisonApple.cpp" />
     <ClCompile Include="Skydome.cpp" />
     <ClCompile Include="SpringScene.cpp" />
+    <ClCompile Include="SpriteManager\GlobalSpriteManger.cpp" />
+    <ClCompile Include="SpriteManager\SpriteManger.cpp" />
     <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="WorldTransformEx.cpp" />
@@ -275,6 +277,8 @@
     <ClInclude Include="PoisonApple.h" />
     <ClInclude Include="Skydome.h" />
     <ClInclude Include="SpringScene.h" />
+    <ClInclude Include="SpriteManager\GlobalSpriteManger.h" />
+    <ClInclude Include="SpriteManager\SpriteManger.h" />
     <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="WorldTransformEx.h" />

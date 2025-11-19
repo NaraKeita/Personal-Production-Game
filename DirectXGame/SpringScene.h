@@ -35,6 +35,11 @@ private:
 	bool showStartText_ = false;  // スタート表示フラグ
 	int showStartTextFrame_ = 0;  // スタート表示フレーム数
 
+	bool isActive_ = true;
+	void SetActive(bool active) { isActive_ = active; }
+
+	int lastAppleScore_ = 0; // 最後に取ったリンゴのスコア
+
 private:
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -67,5 +72,8 @@ private:
 
 	uint32_t countdownHandles_[4];
 	Sprite* countdownSprites_[4];
+
+	Sprite* endSprite_ = nullptr;
+	uint32_t endHandles_ = 0;
 
 };

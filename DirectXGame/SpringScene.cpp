@@ -58,6 +58,9 @@ void SpringScene::Initialize() {
 	countdownHandles_[2] = TextureManager::Load("NumberSystem/start/count1.png"); // 1秒
 	countdownHandles_[3] = TextureManager::Load("NumberSystem/start/start.png");  // START!
 
+	endHandles_ = TextureManager::Load("spriteEnd.png");
+	endSprite_ = Sprite::Create(endHandles_, {570.0f, 100.0f});
+
 	// 始まる前のカウント
 	for (int i = 0; i < 4; i++) {
 		countdownSprites_[i] = Sprite::Create(countdownHandles_[i], {600.0f, 200.0f});
@@ -73,6 +76,8 @@ void SpringScene::Initialize() {
 		timeNumbar_->sprite_[i]->SetPosition({600.0f + 32.0f * i, 5.0f});
 	}
 
+	apple_->SetOnGetApple([this](int score) { lastAppleScore_ = score; });
+
 	// 軸方向
 	AxisIndicator::GetInstance()->SetVisible(true);
 	AxisIndicator::GetInstance()->SetTargetCamera(camera_);
@@ -80,6 +85,7 @@ void SpringScene::Initialize() {
 }
 
 void SpringScene::Update() { 
+	if (!isActive_) return;
 	// ゲーム開始前のカウントダウン （ 3秒 ）
 	if (!isStarted_) {
 		startCountdown_ -= 1.0f / 60.0f;
@@ -105,7 +111,11 @@ void SpringScene::Update() {
 
 	if (timeLimit_ <= 0.0f) {
 		timeLimit_ = 0.0f;
-		finished_ = true;
+		Player* mutablePlayer = const_cast<Player*>(player_);
+		mutablePlayer->SetSpeed(0.0f); 
+		apple_->SetActive(false);
+		poisonApple_->SetActive(false);
+		//finished_ = true;
 	}
 
 	displayNumbar_->SetNumber(apple_->score_);
@@ -149,6 +159,11 @@ void SpringScene::Draw() {
 	} else {
 		scoreNumbar_->Draw();
 		timeNumbar_->Draw();
+		if (timeLimit_ <= 0.0f && endSprite_) {
+			endSprite_->Draw();
+			displayNumbar_->SetNumber(lastAppleScore_);
+			displayNumbar_->Draw();
+		}
 	}
 
 	Sprite::PostDraw();

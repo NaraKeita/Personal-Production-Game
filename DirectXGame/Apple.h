@@ -12,8 +12,10 @@ public:
 	void SetActive(bool active) { isActive_ = active; }
 	void SetPlayer(const Player* player) { player_ = player; }
 	void SetPosition(const Vector3& pos) { worldTransform_.translation_ = pos; }
+	std::function<void(int)> onGetApple_; // コールバック
 	
 public:
+	void SetOnGetApple(const std::function<void(int)>& func) { onGetApple_ = func; }  
 	const Vector3& GetPosition() const { return worldTransform_.translation_; }
 	float GetRadius() const { return radius_; }
 	bool IsActive() const { return isActive_; }

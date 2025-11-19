@@ -31,8 +31,6 @@ private:
 
 	uint32_t textureHandle_ = 0;
 	
-	
-	
 	KamataEngine::Vector2 charSize_; // 1文字分
 
 	int frameCount_ = 0;

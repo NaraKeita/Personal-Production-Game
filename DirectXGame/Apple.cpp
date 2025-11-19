@@ -39,6 +39,9 @@ void Apple::Update() {
 		isHitPlayer_ = CheckCollision(worldTransform_.translation_, radius_, player_->GetPosition(), player_->GetRadius());
 		if (!wasHit && isHitPlayer_) {
 			score_ += 1; // スコア加算
+			if (onGetApple_) {
+				onGetApple_(score_); // ここで通知
+			}
 			// 効果音再生
 			audio_->PlayWave(seAppleGet_);
 		}

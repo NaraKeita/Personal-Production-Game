@@ -27,6 +27,10 @@ private:
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
+	// ワールド変換データ
+	WorldTransform worldTransform_;
+	// モデル
+	Model* model_ = nullptr;
 	Sprite* sprite_ = nullptr;
 
 	uint32_t textureHandle_ = 0;

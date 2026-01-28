@@ -9,9 +9,11 @@ void TitleScene::Initialize() {
 	audio_ = Audio::GetInstance();
 	// ビュープロジェクション
 	camera_.Initialize();
-
+	//textureHandle_ = TextureManager::Load("title.resource.png");
+	//model_ = Model::CreateFromOBJ("titleTuree");
 	//textureHandle_ = TextureManager::Load("title.png");
 	sprite_ = Sprite::Create(textureHandle_, {0, 0});
+	sprite_->SetSize({1280.0f, 720.0f});
 }
 
 void TitleScene::Update() {
@@ -22,11 +24,12 @@ void TitleScene::Update() {
 }
 
 void TitleScene::Draw() {
-	// コマンドリストの取得
-	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
-	// 前景スプライト描画前処理
-	Sprite::PreDraw(commandList);
-	sprite_->Draw();
-	// スプライト描画後処理
-	Sprite::PostDraw();
+	Model::PreDraw();
+	//model_->Draw(worldTransform_, camera_);
+	Model::PostDraw();
+	/*Sprite::PreDraw();
+	if (sprite_) {
+		sprite_->Draw();
+	}
+	Sprite::PostDraw();*/
 }

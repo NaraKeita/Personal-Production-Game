@@ -7,6 +7,7 @@
 #include "Apple.h"
 #include "PoisonApple.h"
 #include "DisplayNumbar.h"
+#include "TitleScene.h"
 
 using namespace KamataEngine;
 
@@ -21,7 +22,8 @@ public:
 	std::vector<Apple*> apples_;
 
 	// デスフラグのgetter
-	bool IsFinished() const { return finished_; }
+	//bool IsFinished() const { return finished_; }
+	bool IsFinished() const { return isFinished_; }
 
 private:
 	int score_ = 0;           // スコア
@@ -39,6 +41,10 @@ private:
 	void SetActive(bool active) { isActive_ = active; }
 
 	int lastAppleScore_ = 0; // 最後に取ったリンゴのスコア
+
+	bool isEnd_ = false;      // 終了演出中か
+	float endTimer_ = 0.0f;   // 終了演出用タイマー
+	bool isFinished_ = false; // シーン遷移用
 
 private:
 	DirectXCommon* dxCommon_ = nullptr;
@@ -72,6 +78,8 @@ private:
 
 	uint32_t countdownHandles_[4];
 	Sprite* countdownSprites_[4];
+
+	Sprite* title_ = nullptr;
 
 	Sprite* endSprite_ = nullptr;
 	uint32_t endHandles_ = 0;

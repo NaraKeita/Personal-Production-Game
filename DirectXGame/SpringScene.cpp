@@ -72,7 +72,7 @@ void SpringScene::Initialize() {
 	}
 
 	// 残り時間表示位置（真ん中に置いている）
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 5; i++) {
 		timeNumbar_->sprite_[i]->SetPosition({600.0f + 32.0f * i, 5.0f});
 	}
 
@@ -97,6 +97,15 @@ void SpringScene::Update() {
 		return;
 	}
 
+	// 終了演出中
+	if (isEnd_) {
+		endTimer_ += 1.0f / 60.0f;
+		if (endTimer_ >= 3.0f) {
+			isFinished_ = true; // 3秒経過でタイトルに戻す
+		}
+		return;
+	}
+
 	player_->Update(); 
 	skydome_->Update();
 	tree_->Update();
@@ -109,17 +118,20 @@ void SpringScene::Update() {
 	// 1フレームあたりの経過時間
 	timeLimit_ -= 1.0f / 60.0f; //（30秒）
 
+	// 0秒になったらプレイヤーとリンゴの動きが止まる
 	if (timeLimit_ <= 0.0f) {
 		timeLimit_ = 0.0f;
 		Player* mutablePlayer = const_cast<Player*>(player_);
 		mutablePlayer->SetSpeed(0.0f); 
 		apple_->SetActive(false);
 		poisonApple_->SetActive(false);
-		//finished_ = true;
+
+		// 終了演出開始
+		isEnd_ = true;
+		endTimer_ = 0.0f;
 	}
-
+	
 	displayNumbar_->SetNumber(apple_->score_);
-
 	
 }
 
@@ -160,9 +172,9 @@ void SpringScene::Draw() {
 		scoreNumbar_->Draw();
 		timeNumbar_->Draw();
 		if (timeLimit_ <= 0.0f && endSprite_) {
-			endSprite_->Draw();
-			displayNumbar_->SetNumber(lastAppleScore_);
-			displayNumbar_->Draw();
+			endSprite_->Draw();                           // 終了の文字
+			//displayNumbar_->SetNumber(lastAppleScore_);   // スコア
+			//displayNumbar_->Draw();
 		}
 	}
 

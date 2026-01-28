@@ -55,6 +55,7 @@ void DisplayNumbar::Draw() {
 	}
 
 	// 時間制限用
+
 	for (int i = 1; i >= 0; i--) {
 		int digitTimer = timeNum % 10;
 		timeNum /= 10;

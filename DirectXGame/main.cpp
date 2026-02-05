@@ -1,5 +1,5 @@
-#include "SpringScene.h"
-#include "TitleScene.h"
+#include "engine/scene/SpringScene.h"
+#include "engine/scene/TitleScene.h"
 #include "kamataEngine.h"
 //#include "SpriteManager/GlobalSpriteManger.h"
 #include <Windows.h>

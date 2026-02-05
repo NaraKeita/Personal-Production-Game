@@ -154,19 +154,19 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Apple.cpp" />
-    <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="DisplayNumbar.cpp" />
-    <ClCompile Include="Ground.cpp" />
+    <ClCompile Include="engine\3d\Apple.cpp" />
+    <ClCompile Include="engine\calculation\Collision.cpp" />
+    <ClCompile Include="engine\2d\DisplayNumbar.cpp" />
+    <ClCompile Include="engine\3d\Ground.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MathUtilityForText.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PoisonApple.cpp" />
-    <ClCompile Include="Skydome.cpp" />
-    <ClCompile Include="SpringScene.cpp" />
-    <ClCompile Include="TitleScene.cpp" />
-    <ClCompile Include="Tree.cpp" />
-    <ClCompile Include="WorldTransformEx.cpp" />
+    <ClCompile Include="engine\calculation\MathUtilityForText.cpp" />
+    <ClCompile Include="engine\3d\Player.cpp" />
+    <ClCompile Include="engine\3d\PoisonApple.cpp" />
+    <ClCompile Include="engine\3d\Skydome.cpp" />
+    <ClCompile Include="engine\scene\SpringScene.cpp" />
+    <ClCompile Include="engine\scene\TitleScene.cpp" />
+    <ClCompile Include="engine\3d\Tree.cpp" />
+    <ClCompile Include="engine\calculation\WorldTransformEx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -266,18 +266,18 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Apple.h" />
-    <ClInclude Include="Collision.h" />
-    <ClInclude Include="DisplayNumbar.h" />
-    <ClInclude Include="Ground.h" />
-    <ClInclude Include="MathUtilityForText.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="PoisonApple.h" />
-    <ClInclude Include="Skydome.h" />
-    <ClInclude Include="SpringScene.h" />
-    <ClInclude Include="TitleScene.h" />
-    <ClInclude Include="Tree.h" />
-    <ClInclude Include="WorldTransformEx.h" />
+    <ClInclude Include="engine\3d\Apple.h" />
+    <ClInclude Include="engine\calculation\Collision.h" />
+    <ClInclude Include="engine\2d\DisplayNumbar.h" />
+    <ClInclude Include="engine\3d\Ground.h" />
+    <ClInclude Include="engine\calculation\MathUtilityForText.h" />
+    <ClInclude Include="engine\3d\Player.h" />
+    <ClInclude Include="engine\3d\PoisonApple.h" />
+    <ClInclude Include="engine\3d\Skydome.h" />
+    <ClInclude Include="engine\scene\SpringScene.h" />
+    <ClInclude Include="engine\scene\TitleScene.h" />
+    <ClInclude Include="engine\3d\Tree.h" />
+    <ClInclude Include="engine\calculation\WorldTransformEx.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

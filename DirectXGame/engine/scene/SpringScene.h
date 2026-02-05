@@ -1,13 +1,12 @@
 #pragma once
 #include "KamataEngine.h"
-#include "Player.h"
-#include "Skydome.h"
-#include "Ground.h"
-#include "Tree.h"
-#include "Apple.h"
-#include "PoisonApple.h"
-#include "DisplayNumbar.h"
-#include "TitleScene.h"
+#include "../3d/Player.h"
+#include "../3d/Skydome.h"
+#include "../3d/Ground.h"
+#include "../3d/Tree.h"
+#include "../3d/Apple.h"
+#include "../3d/PoisonApple.h"
+#include "../2d/DisplayNumbar.h"
 
 using namespace KamataEngine;
 

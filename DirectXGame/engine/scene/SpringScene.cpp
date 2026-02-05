@@ -1,5 +1,5 @@
 #include "SpringScene.h"
-#include "Collision.h"
+#include "../calculation/Collision.h"
 #include <KamataEngine.h>
 #include <cmath>
 

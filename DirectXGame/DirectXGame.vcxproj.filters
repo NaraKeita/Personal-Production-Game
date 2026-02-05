@@ -16,52 +16,76 @@
     <Filter Include="シェーダー ファイル">
       <UniqueIdentifier>{718c7f4c-fc51-40ad-a221-b9456a7a1a3c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\engine">
+      <UniqueIdentifier>{1bf30978-66be-47d5-bbb0-f5f503b30889}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\engine\2d">
+      <UniqueIdentifier>{324d1d84-ccb3-40a7-9c77-8b60b4e71d6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\engine\3d">
+      <UniqueIdentifier>{69dd7b54-6e21-4081-8622-8b98910c5a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\engine\externals.calculation">
+      <UniqueIdentifier>{40cb270b-b73d-4669-af45-320b5fe42f72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\engine\scene">
+      <UniqueIdentifier>{667bf57e-f913-4017-9f6d-3425c08157cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\engine">
+      <UniqueIdentifier>{368ab1ad-6e58-43be-8c9b-c6022f34554a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\engine\externals.calculation">
+      <UniqueIdentifier>{ed6268e3-7d5f-4ba4-905d-36f53f373c8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\engine\scene">
+      <UniqueIdentifier>{cc1dda33-61c5-443d-a2dd-a747a264d438}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\engine\3d">
+      <UniqueIdentifier>{eca19ba2-da19-44d8-a9be-d847413c72bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\engine\2d">
+      <UniqueIdentifier>{1646fcba-fd56-429d-8401-6c1c8baffa6e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Apple.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\2d\DisplayNumbar.cpp">
+      <Filter>ソース ファイル\engine\2d</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\scene\TitleScene.cpp">
+      <Filter>ソース ファイル\engine\scene</Filter>
     </ClCompile>
-    <ClCompile Include="DisplayNumbar.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\scene\SpringScene.cpp">
+      <Filter>ソース ファイル\engine\scene</Filter>
     </ClCompile>
-    <ClCompile Include="Ground.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\3d\Apple.cpp">
+      <Filter>ソース ファイル\engine\3d</Filter>
     </ClCompile>
-    <ClCompile Include="MathUtilityForText.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\3d\Ground.cpp">
+      <Filter>ソース ファイル\engine\3d</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\3d\Player.cpp">
+      <Filter>ソース ファイル\engine\3d</Filter>
     </ClCompile>
-    <ClCompile Include="PoisonApple.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\3d\PoisonApple.cpp">
+      <Filter>ソース ファイル\engine\3d</Filter>
     </ClCompile>
-    <ClCompile Include="Skydome.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\3d\Skydome.cpp">
+      <Filter>ソース ファイル\engine\3d</Filter>
     </ClCompile>
-    <ClCompile Include="SpringScene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\3d\Tree.cpp">
+      <Filter>ソース ファイル\engine\3d</Filter>
     </ClCompile>
-    <ClCompile Include="TitleScene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\calculation\Collision.cpp">
+      <Filter>ソース ファイル\engine\externals.calculation</Filter>
     </ClCompile>
-    <ClCompile Include="Tree.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\calculation\MathUtilityForText.cpp">
+      <Filter>ソース ファイル\engine\externals.calculation</Filter>
     </ClCompile>
-    <ClCompile Include="WorldTransformEx.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteManager\GlobalSpriteManger.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteManager\SpriteManger.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="engine\calculation\WorldTransformEx.cpp">
+      <Filter>ソース ファイル\engine\externals.calculation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,47 +138,41 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Apple.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\2d\DisplayNumbar.h">
+      <Filter>ヘッダー ファイル\engine\2d</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\3d\Apple.h">
+      <Filter>ヘッダー ファイル\engine\3d</Filter>
     </ClInclude>
-    <ClInclude Include="DisplayNumbar.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\3d\Ground.h">
+      <Filter>ヘッダー ファイル\engine\3d</Filter>
     </ClInclude>
-    <ClInclude Include="Ground.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\3d\Player.h">
+      <Filter>ヘッダー ファイル\engine\3d</Filter>
     </ClInclude>
-    <ClInclude Include="MathUtilityForText.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\3d\PoisonApple.h">
+      <Filter>ヘッダー ファイル\engine\3d</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\3d\Skydome.h">
+      <Filter>ヘッダー ファイル\engine\3d</Filter>
     </ClInclude>
-    <ClInclude Include="PoisonApple.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\3d\Tree.h">
+      <Filter>ヘッダー ファイル\engine\3d</Filter>
     </ClInclude>
-    <ClInclude Include="Skydome.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\scene\TitleScene.h">
+      <Filter>ヘッダー ファイル\engine\scene</Filter>
     </ClInclude>
-    <ClInclude Include="SpringScene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\scene\SpringScene.h">
+      <Filter>ヘッダー ファイル\engine\scene</Filter>
     </ClInclude>
-    <ClInclude Include="TitleScene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\calculation\Collision.h">
+      <Filter>ヘッダー ファイル\engine\externals.calculation</Filter>
     </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\calculation\MathUtilityForText.h">
+      <Filter>ヘッダー ファイル\engine\externals.calculation</Filter>
     </ClInclude>
-    <ClInclude Include="WorldTransformEx.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteManager\GlobalSpriteManger.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteManager\SpriteManger.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="engine\calculation\WorldTransformEx.h">
+      <Filter>ヘッダー ファイル\engine\externals.calculation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

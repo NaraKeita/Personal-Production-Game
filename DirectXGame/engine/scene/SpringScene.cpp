@@ -45,8 +45,15 @@ void SpringScene::Initialize() {
 	skydome_->Initialize(camera_);
 	ground_->Initialize(camera_);
 	tree_->Initialize(camera_);
-	apple_->Initialize(camera_);
-	apple_->SetPlayer(player_);
+	// リンゴを複数出すために必要
+	for (int i = 0; i < 3; ++i) {
+		Apple* apple = new Apple();
+		apple->Initialize(camera_);
+		apple->SetPlayer(player_);
+		// スコア加算コールバック
+		apple->SetOnGetApple([this](int /*score*/) { ++totalScore_; });
+		apples_.push_back(apple);
+	}
 	poisonApple_->Initialize(camera_);
 	poisonApple_->SetPlayer(player_);
 	displayNumbar_->Initialize();
@@ -66,13 +73,13 @@ void SpringScene::Initialize() {
 		countdownSprites_[i] = Sprite::Create(countdownHandles_[i], {600.0f, 200.0f});
 	}
 
-	// スコア表示位置（左上に置いている）
+	// スコア表示位置（左寄りに置いている）
 	for (int i = 0; i < 5; i++) {
-		scoreNumbar_->sprite_[i]->SetPosition({100.0f + 32.0f * i, 5.0f});
+		scoreNumbar_->sprite_[i]->SetPosition({295.5f + 32.0f * i, 5.0f});
 	}
 
 	// 残り時間表示位置（真ん中に置いている）
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 2; i++) {
 		timeNumbar_->sprite_[i]->SetPosition({600.0f + 32.0f * i, 5.0f});
 	}
 
@@ -100,19 +107,21 @@ void SpringScene::Update() {
 	// 終了演出中
 	if (isEnd_) {
 		endTimer_ += 1.0f / 60.0f;
-		if (endTimer_ >= 3.0f) {
+		if (endTimer_ >= 5.0f) {
 			isFinished_ = true; // 3秒経過でタイトルに戻す
 		}
 		return;
 	}
 
-	player_->Update(); 
-	skydome_->Update();
-	tree_->Update();
-	apple_->Update();
-	poisonApple_->Update();
-	displayNumbar_->Update();
-	scoreNumbar_->SetNumber(apple_->score_);                                // スコア
+	player_->Update();                                                      // プレイヤー
+	skydome_->Update();                                                     // 背景（横に回転している）
+	tree_->Update();                                                        // 木（揺れている）
+	for (auto& apple : apples_) {
+		apple->Update();                                                    // 普通のリンゴ（スコアが加算される）
+	} 
+	poisonApple_->Update();                                                 // デバフリンゴ
+	displayNumbar_->Update();                                               // ↓スコアや時間を動かすのに必要
+	scoreNumbar_->SetNumber(totalScore_);                                   // スコア
 	timeNumbar_->SetTimerNumber(static_cast<int>(std::ceil(timeLimit_)));   // 時間制限
 
 	// 1フレームあたりの経過時間
@@ -131,8 +140,7 @@ void SpringScene::Update() {
 		endTimer_ = 0.0f;
 	}
 	
-	displayNumbar_->SetNumber(apple_->score_);
-	
+	displayNumbar_->SetNumber(totalScore_);
 }
 
 void SpringScene::Draw() {  
@@ -144,12 +152,14 @@ void SpringScene::Draw() {
     // 3Dモデル描画前処理
 	Model::PreDraw();
 
-    player_->Draw();  
-	skydome_->Draw();
-	ground_->Draw();
-	tree_->Draw();
-	apple_->Draw();
-	poisonApple_->Draw();
+    player_->Draw();                 // プレイヤー
+	skydome_->Draw();                // 背景
+	ground_->Draw();                 // 地面
+	tree_->Draw();                   // リンゴの木
+	for (auto& apple : apples_) {
+		apple->Draw();               // リンゴ
+	} 
+	poisonApple_->Draw();            // デバフリンゴ
 
     // 3Dモデル描画後処理  
     Model::PostDraw();  
@@ -173,8 +183,7 @@ void SpringScene::Draw() {
 		timeNumbar_->Draw();
 		if (timeLimit_ <= 0.0f && endSprite_) {
 			endSprite_->Draw();                           // 終了の文字
-			//displayNumbar_->SetNumber(lastAppleScore_);   // スコア
-			//displayNumbar_->Draw();
+			
 		}
 	}
 

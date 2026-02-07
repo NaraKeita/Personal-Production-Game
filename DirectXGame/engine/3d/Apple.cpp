@@ -5,7 +5,7 @@
 void Apple::Initialize(Camera* camera) {
 	audio_ = Audio::GetInstance();
 	model_ = Model::CreateFromOBJ("apple");
-	seAppleGet_ = audio_->LoadWave("mokugyo.wav");
+	seAppleGet_ = audio_->LoadWave("bgm/appleBite.mp3");
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
 	camera_ = camera;
@@ -14,7 +14,7 @@ void Apple::Initialize(Camera* camera) {
 
 void Apple::Update() {
 	if (!isActive_) return;
-	worldTransform_.translation_.y -= 0.1f;
+	worldTransform_.translation_.y -= fallSpeed_;
 	worldTransform_.rotation_.z += 0.1f;
 
 	// 地面のY座標
@@ -24,11 +24,12 @@ void Apple::Update() {
 	auto resetApple = [this]() {
 		static std::random_device rd;
 		static std::mt19937 gen(rd());
-		static std::uniform_real_distribution<float> dist(-8.0f, 8.0f);
+		static std::uniform_real_distribution<float> dist(-8.0f, 8.0f);      // リンゴが落ちてくる範囲
+		static std::uniform_real_distribution<float> speedDist(0.05f, 0.2f); // スピード範囲
 		float randomX = dist(gen);
 		worldTransform_.translation_ = {randomX, 10.0f, -20.0f};
 		worldTransform_.rotation_ = {0.0f, 0.0f, 0.0f};
-		fallSpeed_ = 0.1f; // リセット時に初期速度に戻す
+		fallSpeed_ = speedDist(gen); // リセット時に初期速度に戻す
 	};
 
 	// 地面より下 or プレイヤーと当たったら初期位置に戻す
@@ -47,6 +48,7 @@ void Apple::Update() {
 		}
 	}
 
+	// 一定のところまで落ちるかプレイヤーに当たったら元の位置に戻る
 	if (isBelowGround || isHitPlayer_) {
 		resetApple();
 	}

@@ -1,11 +1,11 @@
 #include "PoisonApple.h"
-#include "Collision.h"
+#include "../calculation/Collision.h"
 #include <random>
 
 void PoisonApple::Initialize(Camera* camera) {
 	audio_ = Audio::GetInstance();
 	model_ = Model::CreateFromOBJ("poison");
-	seAppleGet_ = audio_->LoadWave("mokugyo.wav");
+	seAppleGet_ = audio_->LoadWave("bgm/voiceOfHeaven.mp3");
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
 	camera_ = camera;
@@ -24,7 +24,7 @@ void PoisonApple::Update() {
 	auto resetApple = [this]() {
 		static std::random_device rd;
 		static std::mt19937 gen(rd());
-		static std::uniform_real_distribution<float> dist(-8.0f, 8.0f);
+		static std::uniform_real_distribution<float> dist(-8.0f, 8.0f); // デバフリンゴが落ちてくる範囲
 		float randomX = dist(gen);
 		worldTransform_.translation_ = {randomX, 10.0f, -20.0f};
 		worldTransform_.rotation_ = {0.0f, 0.0f, 0.0f};

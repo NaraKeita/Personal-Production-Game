@@ -1,6 +1,6 @@
 #include "Player.h"
 #include <numbers>
-#include "MathUtilityForText.h" // 旋回をやりたいから入れている
+#include "../calculation/MathUtilityForText.h" // 旋回をやりたいから入れている
 
 void Player::SetSpeed(float speed) { 
 	kCharacterSpeed = speed;

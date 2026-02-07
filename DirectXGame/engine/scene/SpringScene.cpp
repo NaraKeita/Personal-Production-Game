@@ -68,6 +68,9 @@ void SpringScene::Initialize() {
 	endHandles_ = TextureManager::Load("spriteEnd.png");
 	endSprite_ = Sprite::Create(endHandles_, {570.0f, 100.0f});
 
+	bgmHandle_ = audio_->LoadWave("bgm/fruitsparfait.mp3");
+	voiceHandle_ = audio_->PlayWave(bgmHandle_, true, 0.3f); // ループ再生
+
 	// 始まる前のカウント
 	for (int i = 0; i < 4; i++) {
 		countdownSprites_[i] = Sprite::Create(countdownHandles_[i], {600.0f, 200.0f});
@@ -109,6 +112,7 @@ void SpringScene::Update() {
 		endTimer_ += 1.0f / 60.0f;
 		if (endTimer_ >= 5.0f) {
 			isFinished_ = true; // 3秒経過でタイトルに戻す
+			audio_->StopWave(voiceHandle_);
 		}
 		return;
 	}

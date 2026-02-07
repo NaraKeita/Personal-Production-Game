@@ -69,6 +69,11 @@ private:
 
 	Camera* camera_ = nullptr;
 
+	// サウドデータハンドル
+	uint32_t bgmHandle_ = 0; // BGM
+	// 音声再生ハンドル
+	uint32_t voiceHandle_ = 0;  
+
 	// スタート表示
 	Sprite* spriteStart_ = nullptr;
 	uint32_t startHandle_ = 0;

@@ -20,8 +20,8 @@ void TitleScene::Initialize() {
 	spriteBite_ = Sprite::Create(textureBite_, {0, 0});
 	
 	// BGMのロード（Appleと同じようにメンバ変数へ保存）
-	bgmApple_ = audio_->LoadWave("bgm/appleBite.mp3"); // ファイル名は適宜
-	bgmHandle_ = audio_->LoadWave("bgm/yuruyakanaasayake.mp3");    // ファイル名・パスは適宜
+	bgmApple_ = audio_->LoadWave("bgm/appleBite.mp3"); 
+	bgmHandle_ = audio_->LoadWave("bgm/yuruyakanaasayake.mp3"); 
 	voiceHandle_ = audio_->PlayWave(bgmHandle_, true, 1.0f); // ループ再生
 }
 

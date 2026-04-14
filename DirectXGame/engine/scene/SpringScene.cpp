@@ -65,9 +65,19 @@ void SpringScene::Initialize() {
 	countdownHandles_[2] = TextureManager::Load("NumberSystem/start/count1.png"); // 1秒
 	countdownHandles_[3] = TextureManager::Load("NumberSystem/start/start.png");  // START!
 
+	// ESC
+	escHandles_ = TextureManager::Load("esc/esc.png");
+	esc_ = Sprite::Create(escHandles_, {10.0f, 10.0f});
+
+	// 一時停止
+	pauseHandles_ = TextureManager::Load("pause/pause.png");
+	pause_ = Sprite::Create(pauseHandles_, {350.0f, 130.0f});
+
+	// 終了
 	endHandles_ = TextureManager::Load("spriteEnd.png");
 	endSprite_ = Sprite::Create(endHandles_, {570.0f, 100.0f});
 
+	// プレイ中のBGM
 	bgmHandle_ = audio_->LoadWave("bgm/fruitsparfait.mp3");
 	voiceHandle_ = audio_->PlayWave(bgmHandle_, true, 0.3f); // ループ再生
 
@@ -107,13 +117,28 @@ void SpringScene::Update() {
 		return;
 	}
 
+	if (Input::GetInstance()->TriggerKey(DIK_ESCAPE)) {
+		isPaused_ = !isPaused_; // ポーズON/OFF切り替え
+	}
+	if (isPaused_) {
+		if (Input::GetInstance()->TriggerKey(DIK_R)) {
+			isFinished_ = true;
+		}
+		// 一時停止
+		return;
+	}
+
 	// 終了演出中
+	// 10秒経過でタイトルに戻す or スペースキーを押したらタイトルに戻る
 	if (isEnd_) {
 		endTimer_ += 1.0f / 60.0f;
-		if (endTimer_ >= 5.0f) {
-			isFinished_ = true; // 3秒経過でタイトルに戻す
+		if (endTimer_ >= 10.0f) {
+			isFinished_ = true; 
 			audio_->StopWave(voiceHandle_);
-		}
+		} else if(Input::GetInstance()->TriggerKey(DIK_SPACE)) {
+			isFinished_ = true;
+			audio_->StopWave(voiceHandle_);
+			}
 		return;
 	}
 
@@ -170,6 +195,12 @@ void SpringScene::Draw() {
 
 	Sprite::PreDraw(dxCommon->GetCommandList());
 
+	if (isPaused_) {
+		pause_->Draw();
+	}
+
+	esc_->Draw();
+
 	if (!isStarted_) {
 		int countIndex = 0;
 		if (startCountdown_ > 2.0f) {
@@ -186,8 +217,7 @@ void SpringScene::Draw() {
 		scoreNumbar_->Draw();
 		timeNumbar_->Draw();
 		if (timeLimit_ <= 0.0f && endSprite_) {
-			endSprite_->Draw();                           // 終了の文字
-			
+			endSprite_->Draw(); // 終了の文字
 		}
 	}
 

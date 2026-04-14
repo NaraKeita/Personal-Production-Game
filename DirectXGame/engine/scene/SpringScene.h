@@ -31,6 +31,7 @@ private:
 
 	float startCountdown_ = 3.0f; // ゲーム開始前のカウントダウン（秒）
 	bool isStarted_ = false;      // ゲーム開始フラグ
+	bool isPaused_ = false;       // 一時停止フラグ
 	bool showStartText_ = false;  // スタート表示フラグ
 	int showStartTextFrame_ = 0;  // スタート表示フレーム数
 
@@ -84,6 +85,14 @@ private:
 
 	// タイトルのリソース表示
 	Sprite* title_ = nullptr;
+
+	// ESCのリソース
+	Sprite* esc_ = nullptr;
+	uint32_t escHandles_ = 0;
+
+	// 一時停止のリソース表示
+	Sprite* pause_ = nullptr;
+	uint32_t pauseHandles_ = 0;
 
 	// 30秒経ったら終了が出る
 	Sprite* endSprite_ = nullptr;

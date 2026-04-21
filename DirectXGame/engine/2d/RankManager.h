@@ -11,11 +11,11 @@ public:
 	~RankManager();
 
 	void Initialize();
-	/*void CreateRankSprite(Rank rank);*/
+	void Update();
 	void Draw();
 	int totalScore_ = 0;
 
 private:
 	uint32_t rankHandles_[5]{};
-	Sprite* rankSprite_ = nullptr;
+	Sprite* rankSprite_;
 };

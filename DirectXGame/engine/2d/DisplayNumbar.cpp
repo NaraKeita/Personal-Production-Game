@@ -4,11 +4,11 @@ using namespace KamataEngine;
 
 void DisplayNumbar::Initialize() {
 	//// ワールド変換データの初期化
-	//worldTransform_.Initialize();
+	// worldTransform_.Initialize();
 
 	//// 色の設定
-	//objectColor_.Initialize();
-	//color_ = {0, 0, 0, 0};
+	// objectColor_.Initialize();
+	// color_ = {0, 0, 0, 0};
 
 	textureHandle_ = TextureManager::Load("number.png");
 	charSize_ = {32.0f, 64.0f}; // 1文字分のサイズ
@@ -20,14 +20,13 @@ void DisplayNumbar::Initialize() {
 		sprite_[i]->SetSize(charSize_);
 		sprite_[i]->SetTextureRect({0, 0}, charSize_);
 	}
-	
 }
 
 void DisplayNumbar::Update() {
 	frameCount_++;
-    number_++;
+	number_++;
 	numberTimer_++;
-	
+
 	// スコア用
 	if (number_ > 99999) {
 		number_ = 0; // 5桁でループ
@@ -37,11 +36,15 @@ void DisplayNumbar::Update() {
 		numberTimer_ = 0; // 5桁でループ
 	}
 
-    //worldTransform_.UpdateMatrix();
+	//ImGui::Begin("timer");
+	//ImGui::DragInt("numberTimer_", &numberTimer_);
+	//ImGui::End();
+
+	// worldTransform_.UpdateMatrix();
 }
 
 void DisplayNumbar::Draw() {
-	
+
 	int num = number_;
 	int timeNum = numberTimer_;
 

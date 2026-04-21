@@ -168,7 +168,7 @@ public: // 列挙子
 	/// <summary>
 	/// ルートパラメータ番号
 	/// </summary>
-	enum class RoomParameter {
+	enum class RootParameter {
 		kWorldTransform, // ワールド変換行列
 		kCamera,         // カメラ
 		kMaterial,       // マテリアル
@@ -214,10 +214,10 @@ public: // 静的メンバ関数
 	/// <summary>
 	/// 球モデル生成
 	/// </summary>
-	/// <param name="divisionVertial">垂直方向（緯度）分割数</param>
+	/// <param name="divisionVertical">垂直方向（緯度）分割数</param>
 	/// <param name="divisionHorizontal">水平方向（経度）分割数</param>
 	/// <returns>生成されたモデル</returns>
-	static Model* CreateSphere(uint32_t divisionVertial = 10, uint32_t divisionHorizontal = 10);
+	static Model* CreateSphere(uint32_t divisionVertical = 10, uint32_t divisionHorizontal = 10);
 
 	/// <summary>
 	/// 描画前処理
@@ -248,9 +248,9 @@ public: // メンバ関数
 	/// </summary>
 	/// <param name="worldTransform">ワールドトランスフォーム</param>
 	/// <param name="camera">カメラ</param>
-	/// <param name="textureHadle">テクスチャハンドル</param>
+	/// <param name="textureHandle">テクスチャハンドル</param>
 	/// <param name="objectColor">オブジェクトカラー</param>
-	void Draw(const WorldTransform& worldTransform, const Camera& camera, uint32_t textureHadle, const ObjectColor* objectColor = nullptr);
+	void Draw(const WorldTransform& worldTransform, const Camera& camera, uint32_t textureHandle, const ObjectColor* objectColor = nullptr);
 
 	/// <summary>
 	/// メッシュコンテナを取得
@@ -272,7 +272,7 @@ public: // メンバ関数
 
 private: // メンバ変数
 	// 名前
-	std::string name_;
+	std::string name;
 	// メッシュコンテナ
 	std::vector<std::unique_ptr<Mesh>> meshes_;
 	// マテリアルコンテナ

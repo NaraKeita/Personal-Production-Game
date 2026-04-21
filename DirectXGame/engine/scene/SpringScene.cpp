@@ -14,7 +14,7 @@ SpringScene::~SpringScene() {
 	delete apple_;
 	delete poisonApple_;
 	delete displayNumbar_;
-
+	delete rankManager_;
 }
 
 void SpringScene::Initialize() {
@@ -32,6 +32,7 @@ void SpringScene::Initialize() {
 	apple_ = new Apple();
 	poisonApple_ = new PoisonApple();
 	displayNumbar_ = new DisplayNumbar();
+	rankManager_ = new RankManager();
 	scoreNumbar_ = new DisplayNumbar();
 	timeNumbar_ = new DisplayNumbar();
 
@@ -57,6 +58,7 @@ void SpringScene::Initialize() {
 	poisonApple_->Initialize(camera_);
 	poisonApple_->SetPlayer(player_);
 	displayNumbar_->Initialize();
+	rankManager_->Initialize();
 	scoreNumbar_->Initialize();
 	timeNumbar_->Initialize();
 
@@ -152,6 +154,7 @@ void SpringScene::Update() {
 	displayNumbar_->Update();                                               // ↓スコアや時間を動かすのに必要
 	scoreNumbar_->SetNumber(totalScore_);                                   // スコア
 	timeNumbar_->SetTimerNumber(static_cast<int>(std::ceil(timeLimit_)));   // 時間制限
+	//rankManager_->DetermineRank(totalScore_);                               // ランクの判定
 
 	// 1フレームあたりの経過時間
 	timeLimit_ -= 1.0f / 60.0f; //（30秒）
@@ -193,6 +196,9 @@ void SpringScene::Draw() {
     // 3Dモデル描画後処理  
     Model::PostDraw();  
 
+//------------------------------------------------------------------------------------------------//
+
+	// 2Dモデル描画前処理
 	Sprite::PreDraw(dxCommon->GetCommandList());
 
 	if (isPaused_) {
@@ -200,6 +206,7 @@ void SpringScene::Draw() {
 	}
 
 	esc_->Draw();
+	
 
 	if (!isStarted_) {
 		int countIndex = 0;
@@ -218,9 +225,11 @@ void SpringScene::Draw() {
 		timeNumbar_->Draw();
 		if (timeLimit_ <= 0.0f && endSprite_) {
 			endSprite_->Draw(); // 終了の文字
+			rankManager_->Draw(); // ランク表示
 		}
 	}
 
+	// 2Dモデル描画後処理
 	Sprite::PostDraw();
 }
 

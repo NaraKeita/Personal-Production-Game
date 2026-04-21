@@ -26,7 +26,6 @@ public:
 		kExclusion, //!< 除外。(1 - Dest) * Src + (1 - Src) * Dest
 
 		kCountOfBlendMode,    //!< ブレンドモード数。指定はしない
-		kMultily = kMultiply, //!< スペルミス互換用
 	};
 
 public: // サブクラス

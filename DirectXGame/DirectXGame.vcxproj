@@ -167,6 +167,7 @@
     <ClCompile Include="engine\scene\TitleScene.cpp" />
     <ClCompile Include="engine\3d\Tree.cpp" />
     <ClCompile Include="engine\calculation\WorldTransformEx.cpp" />
+    <ClCompile Include="engine\2d\RankManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Resources\shaders\TerrainPS.hlsl">
@@ -278,6 +279,7 @@
     <ClInclude Include="engine\scene\TitleScene.h" />
     <ClInclude Include="engine\3d\Tree.h" />
     <ClInclude Include="engine\calculation\WorldTransformEx.h" />
+    <ClInclude Include="engine\2d\RankManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

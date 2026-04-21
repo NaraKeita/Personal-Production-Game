@@ -35,6 +35,5 @@ private:
 	const Player* player_ = nullptr;
 
 	float fallSpeed_ = 0.1f;  // 初期落下速度
-	
 	float radius_ = 1.0f; // モデルの大きさに合わせて調整
 };

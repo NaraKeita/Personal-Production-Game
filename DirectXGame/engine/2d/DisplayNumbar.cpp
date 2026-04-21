@@ -3,12 +3,12 @@
 using namespace KamataEngine;
 
 void DisplayNumbar::Initialize() {
-	// ワールド変換データの初期化
-	worldTransform_.Initialize();
+	//// ワールド変換データの初期化
+	//worldTransform_.Initialize();
 
-	// 色の設定
-	objectColor_.Initialize();
-	color_ = {0, 0, 0, 0};
+	//// 色の設定
+	//objectColor_.Initialize();
+	//color_ = {0, 0, 0, 0};
 
 	textureHandle_ = TextureManager::Load("number.png");
 	charSize_ = {32.0f, 64.0f}; // 1文字分のサイズ
@@ -37,7 +37,7 @@ void DisplayNumbar::Update() {
 		numberTimer_ = 0; // 5桁でループ
 	}
 
-    worldTransform_.UpdateMatrix();
+    //worldTransform_.UpdateMatrix();
 }
 
 void DisplayNumbar::Draw() {

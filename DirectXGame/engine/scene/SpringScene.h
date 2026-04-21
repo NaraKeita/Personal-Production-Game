@@ -1,5 +1,6 @@
 #pragma once
 #include "../2d/DisplayNumbar.h"
+#include "../2d/RankManager.h"
 #include "../3d/Apple.h"
 #include "../3d/Ground.h"
 #include "../3d/Player.h"
@@ -45,6 +46,9 @@ private:
 	bool isFinished_ = false; // シーン遷移用
 
 private:
+	WorldTransform worldTransform_;
+	Camera* camera_ = nullptr;
+
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
@@ -66,9 +70,7 @@ private:
 	DisplayNumbar* scoreNumbar_ = nullptr;     // スコア表示用
 	DisplayNumbar* timeNumbar_ = nullptr;      // 残り時間表示用
 
-	WorldTransform worldTransform_;
-
-	Camera* camera_ = nullptr;
+	RankManager* rankManager_ = nullptr; // ランキング管理
 
 	// サウドデータハンドル
 	uint32_t bgmHandle_ = 0; // BGM

@@ -13,6 +13,7 @@ void TitleScene::Initialize() {
 	// ビュープロジェクション
 	camera_.Initialize();
 
+
 	textureHandle_ = TextureManager::Load("title/titleResource1.png");
 	textureBite_ = TextureManager::Load("title/titleResource2.png");
 

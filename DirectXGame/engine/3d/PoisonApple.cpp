@@ -38,10 +38,9 @@ void PoisonApple::Update() {
 		bool wasHit = isHitPlayer_; // これがないと音が連続で鳴り続ける
 		isHitPlayer_ = CheckCollision(worldTransform_.translation_, radius_, player_->GetPosition(), player_->GetRadius());
 		if (!wasHit && isHitPlayer_) {
-			score_ -= 1; // スコア加算
+			//score_ -= 1; // スコア加算
 			// プレイヤーのスピードを遅くする
-			Player* mutablePlayer = const_cast<Player*>(player_);
-			mutablePlayer->SetSpeed(0.05f); // 例: 通常0.3f→0.1fに減速
+			player_->SetSpeed(0.05f); // 例: 通常0.3f→0.05fに減速
 			
 			// 効果音再生
 			audio_->PlayWave(seAppleGet_);

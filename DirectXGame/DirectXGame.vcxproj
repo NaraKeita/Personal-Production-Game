@@ -281,6 +281,9 @@
     <ClInclude Include="engine\calculation\WorldTransformEx.h" />
     <ClInclude Include="engine\2d\RankManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="GameSettingData.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

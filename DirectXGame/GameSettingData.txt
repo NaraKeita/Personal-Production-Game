@@ -1,0 +1,6 @@
+# Game setting sample
+appleCount, 5
+playerLives,3
+maxScore, 100
+# 以下は不正な値の例（数値変換エラーが発生する）
+badValue, abc

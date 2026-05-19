@@ -21,7 +21,7 @@ public:
 	float GetRadius() const { return radius_; }
 	bool IsActive() const { return isActive_; }
 	int score_ = 0;           // スコア
-	uint32_t seAppleGet_ = 0; // 効果音
+	//uint32_t seAppleGet_ = 0; // 効果音
 
 private:
 	Audio* audio_ = nullptr;
@@ -33,6 +33,8 @@ private:
 	bool isActive_ = true;
 	bool isHitPlayer_ = false;
 	const Player* player_ = nullptr;
+
+	uint32_t seAppleGet_ = 0; // 効果音
 
 	float fallSpeed_ = 0.1f;  // 初期落下速度
 	float radius_ = 1.0f; // モデルの大きさに合わせて調整

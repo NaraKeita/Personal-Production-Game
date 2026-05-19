@@ -21,8 +21,8 @@ public:
 	float GetRadius() const { return radius_; }
 
 public:
-	Input* input_ = nullptr;
-	LRDirection lrDirection_ = LRDirection::kRight;
+	/*Input* input_ = nullptr;
+	LRDirection lrDirection_ = LRDirection::kRight;*/
 
 private:
 	// ワールド変換データ
@@ -32,6 +32,8 @@ private:
 
 	// モデル
 	Model* model_ = nullptr;
+	Input* input_ = nullptr;
+	LRDirection lrDirection_ = LRDirection::kRight;
 	// X方向の速度
 	float velocityX_;
 

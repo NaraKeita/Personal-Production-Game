@@ -181,4 +181,7 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="GameSettingData.txt" />
+  </ItemGroup>
 </Project>

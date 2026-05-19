@@ -61,6 +61,11 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 		imGuiManager->Draw();
 
 		dxCommon->PostDraw();
+
+		if (Input::GetInstance()->TriggerKey(DIK_DELETE)) {
+			break;
+		}
+
 	}
 
 	// 各種解放

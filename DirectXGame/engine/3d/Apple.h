@@ -20,7 +20,7 @@ public:
 	const Vector3& GetPosition() const { return worldTransform_.translation_; }
 	float GetRadius() const { return radius_; }
 	bool IsActive() const { return isActive_; }
-	int score_ = 0;           // スコア
+	int SetScore(int num) { return score_ = num; }
 	//uint32_t seAppleGet_ = 0; // 効果音
 
 private:
@@ -33,7 +33,7 @@ private:
 	bool isActive_ = true;
 	bool isHitPlayer_ = false;
 	const Player* player_ = nullptr;
-
+	int score_ = 0;           // スコア
 	uint32_t seAppleGet_ = 0; // 効果音
 
 	float fallSpeed_ = 0.1f;  // 初期落下速度

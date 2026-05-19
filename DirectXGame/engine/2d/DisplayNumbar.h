@@ -16,7 +16,7 @@ public:
 	void SetNumber(int number) { number_ = std::clamp(number, 0, 99999); }
 	void SetTimerNumber(int number) { numberTimer_ = std::clamp(number, 0, 99); }
 
-	KamataEngine::Sprite* sprite_[5] = {};
+	KamataEngine::Sprite* GetSprite(int num) { return sprite_[num]; }
 	
 private:
 	// ワールド変換データ
@@ -29,4 +29,5 @@ private:
 	int frameCount_ = 0;
 	int number_ = 0;
 	int numberTimer_ = 0;
+	KamataEngine::Sprite* sprite_[5] = {};
 };

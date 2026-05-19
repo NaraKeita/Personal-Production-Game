@@ -37,7 +37,7 @@ void SpringScene::Initialize() {
 	timeNumbar_ = new DisplayNumbar();
 
 	// スコア設定
-	apple_->score_ = 0;
+	apple_->SetScore(0);
 	
 	// 初期化
 	camera_->Initialize();
@@ -90,12 +90,12 @@ void SpringScene::Initialize() {
 
 	// スコア表示位置（左寄りに置いている）
 	for (int i = 0; i < 5; i++) {
-		scoreNumbar_->sprite_[i]->SetPosition({295.5f + 32.0f * i, 5.0f});
+		scoreNumbar_->GetSprite(i)->SetPosition({295.5f + 32.0f * i, 5.0f});
 	}
 
 	// 残り時間表示位置（真ん中に置いている）
 	for (int i = 0; i < 2; i++) {
-		timeNumbar_->sprite_[i]->SetPosition({600.0f + 32.0f * i, 5.0f});
+		timeNumbar_->GetSprite(i)->SetPosition({600.0f + 32.0f * i, 5.0f});
 	}
 
 	apple_->SetOnGetApple([this](int score) { lastAppleScore_ = score; });

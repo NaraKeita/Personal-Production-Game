@@ -17,7 +17,6 @@ public:
 	void Initialize();
 	void Update();
 	void Draw();
-	std::vector<Apple*> apples_;
 
 	// 終わりフラグのgetter
 	bool IsFinished() const { return isFinished_; }
@@ -26,6 +25,7 @@ private:
 	int score_ = 0;           // スコア
 	uint32_t seAppleGet_ = 0; // 効果音
 	int totalScore_ = 0;
+	std::vector<Apple*> apples_;
 
 	float timeLimit_ = 30.0f; // 制限時間（秒）
 	bool finished_ = false;   // 終了フラグ

@@ -1,6 +1,7 @@
 #include "SpringScene.h"
 #include "../calculation/Collision.h"
 #include <KamataEngine.h>
+#include <iostream>
 #include <cmath>
 
 using namespace KamataEngine;
@@ -15,6 +16,9 @@ SpringScene::~SpringScene() {
 	delete poisonApple_;
 	delete displayNumbar_;
 	delete rankManager_;
+
+	// gameObjects_ は非所有リストなのでクリアしておく
+	gameObjects_.clear();
 }
 
 void SpringScene::Initialize() {
@@ -26,15 +30,25 @@ void SpringScene::Initialize() {
 	// 生成
 	camera_ = new Camera();
 	player_ = new Player();
+	gameObjects_.push_back(player_);
 	skydome_ = new Skydome();
+	gameObjects_.push_back(skydome_);
 	ground_ = new Ground();
+	gameObjects_.push_back(ground_);
 	tree_ = new Tree();
+	gameObjects_.push_back(tree_);
 	apple_ = new Apple();
+	gameObjects_.push_back(apple_);
 	poisonApple_ = new PoisonApple();
+	gameObjects_.push_back(poisonApple_);
 	displayNumbar_ = new DisplayNumbar();
+	gameObjects_.push_back(displayNumbar_);
 	rankManager_ = new RankManager();
+	gameObjects_.push_back(rankManager_);
 	scoreNumbar_ = new DisplayNumbar();
+	gameObjects_.push_back(scoreNumbar_);
 	timeNumbar_ = new DisplayNumbar();
+	gameObjects_.push_back(timeNumbar_);
 
 	// スコア設定
 	apple_->SetScore(0);
@@ -46,6 +60,13 @@ void SpringScene::Initialize() {
 	skydome_->Initialize(camera_);
 	ground_->Initialize(camera_);
 	tree_->Initialize(camera_);
+
+	// 単体で保持している apple_ の初期化（複数生成するリンゴとは別）
+	if (apple_) {
+		apple_->Initialize(camera_);
+		apple_->SetPlayer(player_);
+	}
+
 	// リンゴを複数出すために必要
 	for (int i = 0; i < 3; ++i) {
 		Apple* apple = new Apple();
@@ -54,10 +75,21 @@ void SpringScene::Initialize() {
 		// スコア加算コールバック
 		apple->SetOnGetApple([this](int /*score*/) { ++totalScore_; });
 		apples_.push_back(apple);
+		gameObjects_.push_back(apple);
 	}
 	poisonApple_->Initialize(camera_);
 	poisonApple_->SetPlayer(player_);
 	displayNumbar_->Initialize();
+	// DisplayNumbar の初期化確認（sprite が nullptr になっていないかをチェック）
+	if (!displayNumbar_) {
+		std::cerr << "SpringScene: displayNumbar_ is null" << std::endl;
+	} else {
+		for (int i = 0; i < 5; ++i) {
+			if (!displayNumbar_->GetSprite(i)) {
+				std::cerr << "SpringScene: displayNumbar sprite " << i << " is null" << std::endl;
+			}
+		}
+	}
 	rankManager_->Initialize();
 	scoreNumbar_->Initialize();
 	timeNumbar_->Initialize();
@@ -144,13 +176,18 @@ void SpringScene::Update() {
 		return;
 	}
 
-	player_->Update();                                                      // プレイヤー
-	skydome_->Update();                                                     // 背景（横に回転している）
-	tree_->Update();                                                        // 木（揺れている）
-	for (auto& apple : apples_) {
-		apple->Update();                                                    // 普通のリンゴ（スコアが加算される）
-	} 
-	poisonApple_->Update();                                                 // デバフリンゴ
+
+	//player_->Update();  // プレイヤー
+	//skydome_->Update(); // 背景（横に回転している）
+	//tree_->Update();    // 木（揺れている）
+	//for (auto& apple : apples_) {
+	//	apple->Update(); // 普通のリンゴ（スコアが加算される）
+	//	poisonApple_->Update();   
+
+	// ゲームオブジェクトをポリモーフィックに更新
+	for (auto obj : gameObjects_) {
+		if (obj && obj->IsActive()) obj->Update();
+	}
 	displayNumbar_->Update();                                               // ↓スコアや時間を動かすのに必要
 	scoreNumbar_->SetNumber(totalScore_);                                   // スコア
 	timeNumbar_->SetTimerNumber(static_cast<int>(std::ceil(timeLimit_)));   // 時間制限
@@ -187,14 +224,19 @@ void SpringScene::Draw() {
     // 3Dモデル描画前処理
 	Model::PreDraw();
 
-    player_->Draw();                 // プレイヤー
-	skydome_->Draw();                // 背景
-	ground_->Draw();                 // 地面
-	tree_->Draw();                   // リンゴの木
-	for (auto& apple : apples_) {
-		apple->Draw();               // リンゴ
-	} 
-	poisonApple_->Draw();            // デバフリンゴ
+	//player_->Draw();  // プレイヤー
+	//skydome_->Draw(); // 背景
+	//ground_->Draw();  // 地面
+	//tree_->Draw();    // リンゴの木
+	//for (auto& apple : apples_) {
+	//	apple->Draw(); // リンゴ
+	//}
+	//	poisonApple_->Draw(); // デバフリンゴ
+	
+	// ゲームオブジェクトをポリモーフィックに描画
+	for (auto obj : gameObjects_) {
+		if (obj && obj->IsActive()) obj->Draw();
+	}
 
     // 3Dモデル描画後処理  
     Model::PostDraw();  
@@ -203,12 +245,18 @@ void SpringScene::Draw() {
 
 	// 2Dモデル描画前処理
 	Sprite::PreDraw(dxCommon->GetCommandList());
-
+	
+	// 2Dオブジェクトの描画（または gameObjects_ の 2D をここで描く）
+	for (auto obj : gameObjects_) {
+		if (obj && obj->IsActive())
+			obj->Draw();
+	}
+	esc_->Draw();
 	if (isPaused_) {
 		pause_->Draw();
 	}
 
-	esc_->Draw();
+	
 	
 
 	if (!isStarted_) {

@@ -8,6 +8,7 @@
 #include "../3d/Skydome.h"
 #include "../3d/Tree.h"
 #include "KamataEngine.h"
+#include "GameObject.h"
 
 class SpringScene {
 public:
@@ -71,6 +72,9 @@ private:
 	DisplayNumbar* timeNumbar_ = nullptr;      // 残り時間表示用
 
 	RankManager* rankManager_ = nullptr; // ランキング管理
+
+	// 共通インターフェースで扱うゲームオブジェクトリスト（非所有）
+	std::vector<GameObject*> gameObjects_;
 
 	// サウドデータハンドル
 	uint32_t bgmHandle_ = 0; // BGM

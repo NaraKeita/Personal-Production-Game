@@ -5,7 +5,7 @@
 
 using namespace KamataEngine;
 
-class Apple {
+class Apple : public GameObject {
 public:
 	void Initialize(Camera* camera);
 	void Update();

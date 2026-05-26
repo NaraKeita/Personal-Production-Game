@@ -1,8 +1,9 @@
 #pragma once  
 #include <algorithm> // これがないとclampが使えない
 #include "KamataEngine.h"
+#include "../scene/GameObject.h"
 
-class DisplayNumbar {
+class DisplayNumbar : public GameObject {
 public:
 	// 初期化
 	void Initialize();

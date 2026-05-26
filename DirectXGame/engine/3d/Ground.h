@@ -1,9 +1,10 @@
 #pragma once
 #include "KamataEngine.h"
+#include "../scene/GameObject.h"
 
 using namespace KamataEngine;
 
-class Ground {
+class Ground : public GameObject {
 public:
 	void Initialize(Camera* camera);
 	void Update();

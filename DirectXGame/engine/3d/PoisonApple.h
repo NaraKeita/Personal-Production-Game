@@ -4,7 +4,7 @@
 
 using namespace KamataEngine;
 
-class PoisonApple {
+class PoisonApple : public GameObject {
 public:
 	void Initialize(Camera* camera);
 	void Update();

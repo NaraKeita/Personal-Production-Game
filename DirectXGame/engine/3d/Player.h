@@ -1,5 +1,6 @@
 #pragma once
 #include "KamataEngine.h"
+#include "../scene/GameObject.h"
 using namespace KamataEngine;
 
 enum class LRDirection { 
@@ -7,7 +8,7 @@ enum class LRDirection {
 	kLeft,
 };
 
-class Player {
+class Player : public GameObject {
 public:
 	void SetSpeed(float speed);
 	void ResetoreSpeed();           // 一定時間経ったらスピードが元に戻る

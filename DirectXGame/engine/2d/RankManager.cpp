@@ -25,6 +25,7 @@ void RankManager::Update() {
 }
 
 void RankManager::Draw() {
+	Sprite::PreDraw();
 	// int totalScore = 0;
 	int rank = 4;
 	for (int rankIndex = 10; rankIndex < 40; rankIndex += 10) {
@@ -34,4 +35,5 @@ void RankManager::Draw() {
 	}
 	rankSprite_->SetTextureHandle(rankHandles_[rank]);
 	rankSprite_->Draw();
+	Sprite::PostDraw();
 }

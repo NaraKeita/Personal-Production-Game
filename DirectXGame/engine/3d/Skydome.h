@@ -10,6 +10,7 @@ public:
 	void Update();
 	void Draw();
 
+
 private:
 	// ワールド変換データ
 	WorldTransform worldTransform_;

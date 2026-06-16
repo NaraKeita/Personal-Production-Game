@@ -4,7 +4,9 @@
 
 using namespace KamataEngine;
 
-class PoisonApple : public GameObject {
+#include "FallingObject.h"
+
+class PoisonApple : public FallingObject {
 public:
 	void Initialize(Camera* camera);
 	void Update();
@@ -12,6 +14,7 @@ public:
 	void SetActive(bool active) { isActive_ = active; }
 	void SetPlayer(Player* player) { player_ = player; }
 	void SetPosition(const Vector3& pos) { worldTransform_.translation_ = pos; }
+	void OnHitPlayer() override;
 
 public:
 	const Vector3& GetPosition() const { return worldTransform_.translation_; }
@@ -22,18 +25,5 @@ public:
 	//uint32_t seAppleGet_ = 0; // 効果音
 
 private:
-	Audio* audio_ = nullptr;
-	// ワールド変換データ
-	WorldTransform worldTransform_;
-	// モデル
-	Model* model_ = nullptr;
-	Camera* camera_ = nullptr;
-	bool isActive_ = true;
-	bool isHitPlayer_ = false;
-	Player* player_ = nullptr;
-	uint32_t seAppleGet_ = 0; // 効果音
-
-	float fallSpeed_ = 0.1f; // 初期落下速度
-	
-	float radius_ = 1.0f; // モデルの大きさに合わせて調整
+	// 特有のメンバがあればここに置く
 };

@@ -1,4 +1,4 @@
-#include "engine/scene/SpringScene.h"
+#include "engine/scene/GameScene.h"
 #include "engine/scene/TitleScene.h"
 #include "kamataEngine.h"
 #include <Windows.h>
@@ -20,7 +20,7 @@ void UpdateScene();
 void DrawScene();
 
 TitleScene* titleScene = nullptr;
-SpringScene* springScene = nullptr;
+GameScene* gameScene = nullptr;
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
@@ -70,7 +70,7 @@ int WINAPI WinMain(_In_ HINSTANCE, _In_opt_ HINSTANCE, _In_ LPSTR, _In_ int) {
 
 	// 各種解放
 	delete titleScene;
-	delete springScene;
+	delete gameScene;
 
 	KamataEngine::Finalize();
 
@@ -87,15 +87,15 @@ void ChangeScene() {
 			// シーン変更
 			scene = Scene::kGame;
 			// 旧シーンの開放
-			delete springScene;
-			springScene = nullptr;
+			delete gameScene;
+			gameScene = nullptr;
 			// 新シーンの生成と初期化
-			springScene = new SpringScene;
-			springScene->Initialize();
+			gameScene = new GameScene;
+			gameScene->Initialize();
 		}
 		break;
 	case Scene::kGame:
-		if (springScene->IsFinished()) {
+		if (gameScene->IsFinished()) {
 			// シーン変更
 			scene = Scene::kTitle;
 			// 旧シーンの開放
@@ -116,7 +116,7 @@ void UpdateScene() {
 		titleScene->Update();
 		break;
 	case Scene::kGame:
-		springScene->Update();
+		gameScene->Update();
 		break;
 	}
 }
@@ -128,7 +128,7 @@ void DrawScene() {
 		titleScene->Draw();
 		break;
 	case Scene::kGame:
-		springScene->Draw();
+		gameScene->Draw();
 		break;
 	}
 }

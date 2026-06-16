@@ -57,7 +57,7 @@
     <ClCompile Include="engine\scene\TitleScene.cpp">
       <Filter>ソース ファイル\engine\scene</Filter>
     </ClCompile>
-    <ClCompile Include="engine\scene\SpringScene.cpp">
+    <ClCompile Include="engine\scene\GameScene.cpp">
       <Filter>ソース ファイル\engine\scene</Filter>
     </ClCompile>
     <ClCompile Include="engine\3d\Apple.cpp">
@@ -90,7 +90,7 @@
     <ClCompile Include="engine\2d\RankManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="engine\2d\Sprite.cpp">
+    <ClCompile Include="engine\3d\FallingObject.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -168,7 +168,7 @@
     <ClInclude Include="engine\scene\TitleScene.h">
       <Filter>ヘッダー ファイル\engine\scene</Filter>
     </ClInclude>
-    <ClInclude Include="engine\scene\SpringScene.h">
+    <ClInclude Include="engine\scene\GameScene.h">
       <Filter>ヘッダー ファイル\engine\scene</Filter>
     </ClInclude>
     <ClInclude Include="engine\calculation\Collision.h">
@@ -186,8 +186,12 @@
     <ClInclude Include="engine\scene\GameObject.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="engine\3d\FallingObject.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="GameSettingData.txt" />
+    <Text Include="workspace_listing.txt" />
   </ItemGroup>
 </Project>

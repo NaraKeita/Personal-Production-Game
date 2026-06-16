@@ -1,0 +1,5 @@
+Found files:
+- ..\External\KamataEngine\include\2d\Sprite.h
+- Resources\shaders\Sprite.hlsli
+- Resources\shaders\SpritePS.hlsl
+- Resources\shaders\SpriteVS.hlsl

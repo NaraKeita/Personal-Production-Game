@@ -1,10 +1,10 @@
 #include "RankManager.h"
-#include "../scene/SpringScene.h"
+//#include "../scene/SpringScene.h"
 using namespace KamataEngine;
 RankManager::RankManager() = default;
-RankManager::~RankManager() { /*
+RankManager::~RankManager() { 
 	delete rankSprite_;
-	*/
+	
 }
 
 void RankManager::Initialize() {

@@ -1,4 +1,4 @@
-#include "SpringScene.h"
+#include "GameScene.h"
 #include "../calculation/Collision.h"
 #include <KamataEngine.h>
 #include <iostream>
@@ -6,7 +6,7 @@
 
 using namespace KamataEngine;
 
-SpringScene::~SpringScene() {
+GameScene::~GameScene() {
 	// 自キャラの開放
 	delete player_;
 	delete skydome_;
@@ -21,7 +21,7 @@ SpringScene::~SpringScene() {
 	gameObjects_.clear();
 }
 
-void SpringScene::Initialize() {
+void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
@@ -42,13 +42,13 @@ void SpringScene::Initialize() {
 	poisonApple_ = new PoisonApple();
 	gameObjects_.push_back(poisonApple_);
 	displayNumbar_ = new DisplayNumbar();
-	gameObjects_.push_back(displayNumbar_);
+	//gameObjects_.push_back(displayNumbar_);
 	rankManager_ = new RankManager();
-	gameObjects_.push_back(rankManager_);
+	//gameObjects_.push_back(rankManager_);
 	scoreNumbar_ = new DisplayNumbar();
-	gameObjects_.push_back(scoreNumbar_);
+	//gameObjects_.push_back(scoreNumbar_);
 	timeNumbar_ = new DisplayNumbar();
-	gameObjects_.push_back(timeNumbar_);
+	//gameObjects_.push_back(timeNumbar_);
 
 	// スコア設定
 	apple_->SetScore(0);
@@ -138,7 +138,7 @@ void SpringScene::Initialize() {
 
 }
 
-void SpringScene::Update() { 
+void GameScene::Update() { 
 	if (!isActive_) return;
 	// ゲーム開始前のカウントダウン （ 3秒 ）
 	if (!isStarted_) {
@@ -215,7 +215,7 @@ void SpringScene::Update() {
 	ImGui::End();
 }
 
-void SpringScene::Draw() {  
+void GameScene::Draw() {  
     // DirectXCommonのインスタンスを取得  
     DirectXCommon* dxCommon = DirectXCommon::GetInstance();  
 
@@ -245,22 +245,20 @@ void SpringScene::Draw() {
 
 	// 2Dモデル描画前処理
 	Sprite::PreDraw(dxCommon->GetCommandList());
-	
-	// 2Dオブジェクトの描画（または gameObjects_ の 2D をここで描く）
-	for (auto obj : gameObjects_) {
-		if (obj && obj->IsActive())
-			obj->Draw();
-	}
+
+	//// 2Dオブジェクトの描画（または gameObjects_ の 2D をここで描く）
+	//for (auto obj : gameObjects_) {
+	//	if (obj && obj->IsActive()) {
+	//	}
+	//		obj->Draw();
+	//}
 	esc_->Draw();
 	if (isPaused_) {
 		pause_->Draw();
 	}
 
-	
-	
-
 	if (!isStarted_) {
-		int countIndex = 0;
+		
 		if (startCountdown_ > 2.0f) {
 			countIndex = 0; // 3
 		} else if (startCountdown_ > 1.0f) {
@@ -274,7 +272,7 @@ void SpringScene::Draw() {
 	} else {
 		scoreNumbar_->Draw();
 		timeNumbar_->Draw();
-		if (timeLimit_ <= 0.0f && endSprite_) {
+		if (timeLimit_ <= 0.0f) {
 			endSprite_->Draw(); // 終了の文字
 			rankManager_->Draw(); // ランク表示
 		}

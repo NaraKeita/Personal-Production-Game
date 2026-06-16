@@ -8,12 +8,12 @@
 #include "../3d/Skydome.h"
 #include "../3d/Tree.h"
 #include "KamataEngine.h"
-#include "GameObject.h"
+#include "../scene/GameObject.h"
 
-class SpringScene {
+class GameScene {
 public:
 	// SpringScene();
-	~SpringScene();
+	~GameScene();
 
 	void Initialize();
 	void Update();
@@ -103,4 +103,6 @@ private:
 	// 30秒経ったら終了が出る
 	Sprite* endSprite_ = nullptr;
 	uint32_t endHandles_ = 0;
+
+	int countIndex = 0;
 };

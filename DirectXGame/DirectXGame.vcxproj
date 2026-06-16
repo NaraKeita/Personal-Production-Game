@@ -154,8 +154,8 @@
     </FxCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="engine\2d\Sprite.cpp" />
     <ClCompile Include="engine\3d\Apple.cpp" />
+    <ClCompile Include="engine\3d\FallingObject.cpp" />
     <ClCompile Include="engine\calculation\Collision.cpp" />
     <ClCompile Include="engine\2d\DisplayNumbar.cpp" />
     <ClCompile Include="engine\3d\Ground.cpp" />
@@ -164,7 +164,7 @@
     <ClCompile Include="engine\3d\Player.cpp" />
     <ClCompile Include="engine\3d\PoisonApple.cpp" />
     <ClCompile Include="engine\3d\Skydome.cpp" />
-    <ClCompile Include="engine\scene\SpringScene.cpp" />
+    <ClCompile Include="engine\scene\GameScene.cpp" />
     <ClCompile Include="engine\scene\TitleScene.cpp" />
     <ClCompile Include="engine\3d\Tree.cpp" />
     <ClCompile Include="engine\calculation\WorldTransformEx.cpp" />
@@ -269,6 +269,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine\3d\Apple.h" />
+    <ClInclude Include="engine\3d\FallingObject.h" />
     <ClInclude Include="engine\calculation\Collision.h" />
     <ClInclude Include="engine\2d\DisplayNumbar.h" />
     <ClInclude Include="engine\3d\Ground.h" />
@@ -277,7 +278,7 @@
     <ClInclude Include="engine\3d\PoisonApple.h" />
     <ClInclude Include="engine\3d\Skydome.h" />
     <ClInclude Include="engine\scene\GameObject.h" />
-    <ClInclude Include="engine\scene\SpringScene.h" />
+    <ClInclude Include="engine\scene\GameScene.h" />
     <ClInclude Include="engine\scene\TitleScene.h" />
     <ClInclude Include="engine\3d\Tree.h" />
     <ClInclude Include="engine\calculation\WorldTransformEx.h" />
@@ -285,6 +286,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="GameSettingData.txt" />
+    <Text Include="workspace_listing.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,6 +18,7 @@ public:
 	void SetTimerNumber(int number) { numberTimer_ = std::clamp(number, 0, 99); }
 
 	KamataEngine::Sprite* GetSprite(int num) { return sprite_[num]; }
+	KamataEngine::Vector2 charSize_; // 1文字分
 	
 private:
 	// ワールド変換データ
@@ -25,7 +26,7 @@ private:
 
 	uint32_t textureHandle_ = 0;
 	
-	KamataEngine::Vector2 charSize_; // 1文字分
+	
 	
 	int frameCount_ = 0;
 	int number_ = 0;

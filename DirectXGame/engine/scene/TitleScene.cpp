@@ -57,6 +57,5 @@ void TitleScene::Draw() {
 	} else if (sprite_) {
 		sprite_->Draw();
 	}
-
 	Sprite::PostDraw();
 }

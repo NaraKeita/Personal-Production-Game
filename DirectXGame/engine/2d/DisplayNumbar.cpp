@@ -49,7 +49,7 @@ void DisplayNumbar::Update() {
 }
 
 void DisplayNumbar::Draw() {
-	Sprite::PreDraw();
+	//Sprite::PreDraw();
 	int num = number_;
 	int timeNum = numberTimer_;
 
@@ -61,7 +61,7 @@ void DisplayNumbar::Draw() {
 		if (sprite_[i]) {
 		sprite_[i]->SetTextureRect({charSize_.x * digit, 0}, charSize_);
 		sprite_[i]->Draw();
-	}
+		}
 	}
 
 	// 時間制限用
@@ -72,7 +72,7 @@ void DisplayNumbar::Draw() {
 		if (sprite_[i]) {
 		sprite_[i]->SetTextureRect({charSize_.x * digitTimer, 0}, charSize_);
 		sprite_[i]->Draw();
+		}
 	}
-}
-	Sprite::PostDraw();
+	//Sprite::PostDraw();
 }

@@ -272,7 +272,7 @@ void GameScene::Draw() {
 	} else {
 		scoreNumbar_->Draw();
 		timeNumbar_->Draw();
-		if (timeLimit_ <= 0.0f) {
+		if (timeLimit_ <= 0.0f && endSprite_) {
 			endSprite_->Draw(); // 終了の文字
 			rankManager_->Draw(); // ランク表示
 		}

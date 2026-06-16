@@ -1,5 +1,5 @@
 #include "RankManager.h"
-//#include "../scene/SpringScene.h"
+
 using namespace KamataEngine;
 RankManager::RankManager() = default;
 RankManager::~RankManager() { 
@@ -22,18 +22,19 @@ void RankManager::Update() {
 	// ImGui::DragInt("rank",)
 	// ImGui::End();
 	
-}
-
-void RankManager::Draw() {
-	Sprite::PreDraw();
-	// int totalScore = 0;
-	int rank = 4;
-	for (int rankIndex = 10; rankIndex < 40; rankIndex += 10) {
-		if (totalScore_ >= rankIndex) {
+	for (int appleCount = 0; appleCount < 50; appleCount++) {
+		if (totalScore_ >= appleCount) {
 			rank++;
 		}
 	}
+}
+
+void RankManager::Draw() {
+	/*Sprite::PreDraw();*/
+	// int totalScore = 0;
+	
+	
 	rankSprite_->SetTextureHandle(rankHandles_[rank]);
 	rankSprite_->Draw();
-	Sprite::PostDraw();
+	/*Sprite::PostDraw();*/
 }

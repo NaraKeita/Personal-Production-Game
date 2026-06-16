@@ -2,7 +2,6 @@
 #include "KamataEngine.h"
 #include <cstdint>
 #include "../scene/GameObject.h"
-using namespace KamataEngine;
 
 class RankManager : public GameObject {
 public:
@@ -11,13 +10,16 @@ public:
 	RankManager();
 	~RankManager();
 
+	void SetAppleCount(int appleCount);
 	void Initialize();
 	void Update();
 	void Draw();
 	
 
 private:
+	Rank CalculateRank(int appleCount) const;
 	uint32_t rankHandles_[5]{};
-	Sprite* rankSprite_;
+	KamataEngine::Sprite* rankSprite_;
 	int totalScore_ = 0;
+	int rank = 0;
 };

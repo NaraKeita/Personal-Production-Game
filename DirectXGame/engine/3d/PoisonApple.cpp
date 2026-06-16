@@ -1,5 +1,6 @@
 #include "PoisonApple.h"
 
+
 void PoisonApple::Initialize(Camera* camera) {
 	InitializeBase("poison", "bgm/voiceOfHeaven.mp3", camera);
 }
@@ -15,5 +16,7 @@ void PoisonApple::Draw() {
 
 void PoisonApple::OnHitPlayer() {
 	// プレイヤーのスピードを遅くする
-	if (player_) player_->SetSpeed(0.05f);
+	if (player_)
+		player_->SetSpeed(0.05f);
+	
 }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Player.h"
 #include "KamataEngine.h"
 #include <functional> // 最後に取ったリンゴの数を表示するのに必要
